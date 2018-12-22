@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <PackageProjectUrl>https://github.com/mztikk/RFReborn.Windows</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mztikk/RFReborn.Windows</RepositoryUrl>
+    <Authors>mztikk</Authors>
+    <PackageLicenseUrl>https://github.com/mztikk/RFReborn.Windows/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
