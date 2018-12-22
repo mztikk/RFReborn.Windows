@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RFReborn.Windows</name>
+    </assembly>
+    <members>
+        <member name="T:RFReborn.Windows.Extensions.ProcessExtensions">
+            <summary>
+            Extends <see cref="T:System.Diagnostics.Process"/>
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Extensions.ProcessExtensions.GetCommandLine(System.Diagnostics.Process)">
+            <summary>
+            Gets all commandline arguments a process was started with.
+            </summary>
+            <param name="proc">Process to get arguments from.</param>
+            <returns>String of the commandline arguments if successfull, <see cref="F:System.String.Empty"/> otherwise.</returns>
+        </member>
+    </members>
+</doc>
