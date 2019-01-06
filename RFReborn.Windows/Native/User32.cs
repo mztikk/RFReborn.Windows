@@ -36,5 +36,18 @@ namespace RFReborn.Windows.Native
         /// </returns>
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern int SendMessage([In] IntPtr hWnd, [In] int uMsg, [In] uint wParam, [In] uint lParam);
+
+        /// <summary>
+        ///     Translates a character to the corresponding virtual-key code and shift state for the current keyboard.
+        /// </summary>
+        /// <param name="ch">
+        ///     The character to be translated into a virtual-key code.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the low-order byte of the return value contains the virtual-key code and the high-order
+        ///     byte contains the shift state, which can be a combination of the following flag bits.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern short VkKeyScan(char ch);
     }
 }
