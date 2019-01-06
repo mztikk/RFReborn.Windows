@@ -236,5 +236,26 @@ namespace RFReborn.Windows.Native
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool WriteProcessMemory([In] Handle hProcess, [In] IntPtr lpBaseAddress,
             [In] byte[] lpBuffer, [In] int nSize, [Out] out int lpNumberOfBytesWritten);
+
+        /// <summary>
+        ///     Determines whether the specified process is running under WOW64.
+        /// </summary>
+        /// <param name="hProcess">
+        ///     A handle to the process. The handle must have the PROCESS_QUERY_INFORMATION or PROCESS_QUERY_LIMITED_INFORMATION
+        ///     access right. For more information, see Process Security and Access Rights. Windows Server 2003 and Windows XP:
+        ///     The handle must have the PROCESS_QUERY_INFORMATION access right.
+        /// </param>
+        /// <param name="wow64Process">
+        ///     A pointer to a value that is set to TRUE if the process is running under WOW64. If the process is running under
+        ///     32-bit Windows, the value is set to FALSE. If the process is a 64-bit application running under 64-bit Windows, the
+        ///     value is also set to FALSE.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the return value is a nonzero value. If the function fails, the return value is zero.To
+        ///     get extended error information, call GetLastError.
+        /// </returns>
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWow64Process([In] IntPtr hProcess, [Out] out bool wow64Process);
     }
 }
