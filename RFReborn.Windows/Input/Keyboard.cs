@@ -163,9 +163,6 @@ namespace RFReborn.Windows.Input
 
         /// <summary>
         ///     Sends a string(every char in a string) to the window using PostMessage.
-        ///     If a char requires a modifier(i.e. '?') it will use SendInput to send the modifier, because posting the modifier
-        ///     key doesn't translate to upper-case variants of a key because WM_CHAR translates virtual key codes with keyboard
-        ///     states.
         /// </summary>
         /// <param name="hWnd">
         ///     Handle of the window.
