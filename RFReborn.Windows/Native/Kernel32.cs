@@ -118,6 +118,34 @@ namespace RFReborn.Windows.Native
         public static extern IntPtr VirtualAllocEx(Handle hProcess, IntPtr lpAddress, int dwSize, MemoryAllocation flAllocationType, MemoryProtection flProtect);
 
         /// <summary>
+        /// Releases, decommits, or releases and decommits a region of memory within the virtual address space of a specified process.
+        /// </summary>
+        /// <param name="hProcess">A handle to a process. The function frees memory within the virtual address space of the process. 
+        /// The handle must have the PROCESS_VM_OPERATION access right. For more information, see Process Security and Access Rights.
+        /// </param>
+        /// <param name="lpAddress">
+        /// A pointer to the starting address of the region of memory to be freed. 
+        /// If the dwFreeType parameter is MEM_RELEASE, lpAddress must be the base address returned by the <see cref="VirtualAllocEx"/> function when the region is reserved.
+        /// </param>
+        /// <param name="dwSize">
+        /// The size of the region of memory to free, in bytes. 
+        /// If the dwFreeType parameter is MEM_RELEASE, dwSize must be 0 (zero). 
+        /// The function frees the entire region that is reserved in the initial allocation call to <see cref="VirtualAllocEx"/>. 
+        /// If dwFreeType is MEM_DECOMMIT, the function decommits all memory pages that contain one or more bytes in the range from the lpAddress parameter to (lpAddress+dwSize). 
+        /// This means, for example, that a 2-byte region of memory that straddles a page boundary causes both pages to be decommitted. 
+        /// If lpAddress is the base address returned by VirtualAllocEx and dwSize is 0 (zero), the function decommits the entire region that is allocated by <see cref="VirtualAllocEx"/>. 
+        /// After that, the entire region is in the reserved state.
+        /// </param>
+        /// <param name="dwFreeType">[Flags] The type of free operation.</param>
+        /// <returns>
+        /// If the function succeeds, the return value is a nonzero value. 
+        /// If the function fails, the return value is 0 (zero). To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        /// </returns>
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool VirtualFreeEx(Handle hProcess, IntPtr lpAddress, int dwSize, MemoryRelease dwFreeType);
+
+        /// <summary>
         ///     Opens an existing local process object.
         /// </summary>
         /// <param name="dwDesiredAccess">
