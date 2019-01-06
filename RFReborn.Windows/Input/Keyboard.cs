@@ -11,6 +11,32 @@ namespace RFReborn.Windows.Input
     public static class Keyboard
     {
         /// <summary>
+        ///     Modifier Keys.
+        /// </summary>
+        public enum Modifier : byte
+        {
+            /// <summary>
+            ///     No modifier.
+            /// </summary>
+            None,
+
+            /// <summary>
+            ///     Shift modifier.
+            /// </summary>
+            Shift,
+
+            /// <summary>
+            ///     Ctrl modifier.
+            /// </summary>
+            Ctrl,
+
+            /// <summary>
+            ///     Alt modifier.
+            /// </summary>
+            Alt
+        }
+
+        /// <summary>
         ///     Determines if the <see cref="VirtualKeyCode" /> is an ExtendedKey
         /// </summary>
         /// <param name="keyCode">The key code.</param>
@@ -32,6 +58,35 @@ namespace RFReborn.Windows.Input
                    || keyCode == VirtualKeyCode.DOWN || keyCode == VirtualKeyCode.NUMLOCK
                    || keyCode == VirtualKeyCode.CANCEL || keyCode == VirtualKeyCode.SNAPSHOT
                    || keyCode == VirtualKeyCode.DIVIDE;
+        }
+
+        /// <summary>
+        ///     Translates a char to a virtual key code and modifier.
+        /// </summary>
+        /// <param name="ch">
+        ///     Char to translate.
+        /// </param>
+        /// <returns>Virtual key code of the car and the modifier needed.</returns>
+        public static (VirtualKeyCode, Modifier) VkKeyScan(char ch)
+        {
+            var data = User32.VkKeyScan(ch);
+            var vkc = (VirtualKeyCode)(data & 0x2ff);
+            var b = data >> 8;
+            Modifier mod = Modifier.None;
+            if ((b & 1) != 0)
+            {
+                mod = Modifier.Shift;
+            }
+            else if ((b & 2) != 0)
+            {
+                mod = Modifier.Ctrl;
+            }
+            else if ((b & 4) != 0)
+            {
+                mod = Modifier.Alt;
+            }
+
+            return (vkc, mod);
         }
 
         /// <summary>
