@@ -109,14 +109,9 @@ namespace RFReborn.Windows.Memory
             var bytes = ReadBytes(address, size, relative);
             var result = new T[count];
 
-            fixed (void* bp = bytes)
+            fixed (void* bp = bytes, rp = result)
             {
-                var tp = (T*)bp;
-                for (int i = 0; i < count; i++)
-                {
-                    result[i] = *tp;
-                    tp++;
-                }
+                Buffer.MemoryCopy(bp, rp, size, size);
             }
 
             return result;
@@ -131,7 +126,17 @@ namespace RFReborn.Windows.Memory
         /// <param name="relative">If the address is relative or not.</param>
         public void Write<T>(IntPtr address, T value, bool relative = false) where T : unmanaged
         {
-            WriteBytes(address, &value, sizeof(T), relative);
+            int size;
+            if (typeof(T) == typeof(IntPtr))
+            {
+                size = Is64 ? 8 : 4;
+            }
+            else
+            {
+                size = sizeof(T);
+            }
+
+            WriteBytes(address, &value, size, relative);
         }
 
         /// <summary>
