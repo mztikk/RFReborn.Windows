@@ -258,6 +258,171 @@
             <param name="protFlags">Protection flags of the newly allocated memory. Default is <see cref="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_READWRITE"/></param>
             <returns>The address to the allocated memory.</returns>
         </member>
+        <member name="T:RFReborn.Windows.Memory.RemoteMemory">
+            <summary>
+            Implementation of <see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/>
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Memory.RemoteMemory.Self64">
+            <summary>
+            If our process is 64Bit or not.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Memory.RemoteMemory.Both64">
+            <summary>
+            If our and the process we attached to is 64Bit.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Memory.RemoteMemory.Is64">
+            <summary>
+            If the process we attached to is 64Bit or not.
+            </summary>
+        </member>
+        <member name="P:RFReborn.Windows.Memory.RemoteMemory.NativeProcess">
+            <summary>
+            The native process we're interacting with.
+            </summary>
+        </member>
+        <member name="P:RFReborn.Windows.Memory.RemoteMemory.ProcessHandle">
+            <summary>
+            Handle to the process.
+            </summary>
+        </member>
+        <member name="P:RFReborn.Windows.Memory.RemoteMemory.MainModule">
+            <summary>
+            Main module of the process.
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.#ctor(System.Diagnostics.Process)">
+            <summary>
+            Initializes a new instance of <see cref="T:RFReborn.Windows.Memory.RemoteMemory"/>.
+            </summary>
+            <param name="proc"><see cref="T:System.Diagnostics.Process"/> to open.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Read``1(System.IntPtr,System.Boolean)">
+            <summary>
+            Reads a valu of type <typeparamref name="T" /> from the remote process at a specified address.
+            </summary>
+            <typeparam name="T">Type of value.</typeparam>
+            <param name="address">Address where to read the value from.</param>
+            <param name="relative">If the address is relative or not.</param>
+            <returns>Value read from the remote memory.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Read``1(System.IntPtr,System.Int32,System.Boolean)">
+            <summary>
+            Reads an array of values of type <typeparamref name="T" /> from the remote process at a specified address.
+            </summary>
+            <typeparam name="T">Type of values.</typeparam>
+            <param name="address">Address where to read the values from.</param>
+            <param name="count">Number of values to read, size of the return array.</param>
+            <param name="relative">If the address is relative or not.</param>
+            <returns>Array of values read from the remote memory.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Write``1(System.IntPtr,``0,System.Boolean)">
+            <summary>
+            Writes the value of type <typeparamref name="T" /> to the remote process at a specified address.
+            </summary>
+            <typeparam name="T">Type of value.</typeparam>
+            <param name="address">Address where to write the value to.</param>
+            <param name="value">Value to write.</param>
+            <param name="relative">If the address is relative or not.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Write``1(System.IntPtr,``0[],System.Boolean)">
+            <summary>
+            Writes the array of values of type <typeparamref name="T" /> to the remote process at a specified address.
+            </summary>
+            <typeparam name="T">Type of values.</typeparam>
+            <param name="address">Address where to write the values to.</param>
+            <param name="values">Values to write.</param>
+            <param name="relative">If the address is relative or not.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.ReadString(System.IntPtr,System.Text.Encoding,System.Int32,System.Boolean)">
+            <summary>
+            Reads a string in the remote process memory.
+            </summary>
+            <param name="address">Address of the values.</param>
+            <param name="encoding"><see cref="T:System.Text.Encoding" /> to use to get the bytes from the string.</param>
+            <param name="maxLength">Maximum length of the string(bytes to be read).</param>
+            <param name="relative">If the address is relative or not.</param>
+            <returns>String at the address.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.ReadString(System.IntPtr,System.Int32,System.Boolean)">
+            <summary>
+            Reads a string with a default <see cref="T:System.Text.Encoding" /> in the remote process memory.
+            </summary>
+            <param name="address">Address of the values.</param>
+            <param name="maxLength">Maximum length of the string(bytes to be read).</param>
+            <param name="relative">If the address is relative or not.</param>
+            <returns>String at the address.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.WriteString(System.IntPtr,System.String,System.Text.Encoding,System.Boolean)">
+            <summary>
+            Writes a string, using the specified <paramref name="encoding" />, to the remote process at a specified address.
+            </summary>
+            <param name="address">Address where to write the string to.</param>
+            <param name="text">String to write.</param>
+            <param name="encoding"><see cref="T:System.Text.Encoding" /> to use to get the bytes from the string.</param>
+            <param name="relative">If the address is relative or not.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.WriteString(System.IntPtr,System.String,System.Boolean)">
+            <summary>
+            Writes a string, using a default <see cref="T:System.Text.Encoding" />, to the remote process at a specified address.
+            </summary>
+            <param name="address">Address where to write the string to.</param>
+            <param name="text">String to write.</param>
+            <param name="relative">If the address is relative or not.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.ReadBytes(System.IntPtr,System.Int32,System.Boolean)">
+            <summary>
+            Reads bytes from the remote process at a specified address.
+            </summary>
+            <param name="address">Address where to read the bytes from.</param>
+            <param name="count">Number of bytes to read.</param>
+            <param name="relative">If the address is relative or not.</param>
+            <returns>Array of size <paramref name="count" /> with the bytes read.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.WriteBytes(System.IntPtr,System.Byte[],System.Boolean)">
+            <summary>
+            Writes bytes to the remote process at a specified address.
+            </summary>
+            <param name="address">Address where to write the bytes to.</param>
+            <param name="bytes">Bytes to write.</param>
+            <param name="relative">If the address is relative or not.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.ToAbsolute(System.IntPtr)">
+            <summary>
+            Converts a relative address to an absolute one.
+            </summary>
+            <param name="address">Relative address.</param>
+            <returns>Absolute address</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.GetAddress(System.IntPtr,System.Int32[])">
+            <summary>
+            Walks a pointer(base + offsets) and returns the final address.
+            </summary>
+            <param name="address">BaseAddress</param>
+            <param name="offsets">Offsets to walk</param>
+            <returns>The final address of the pointer.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Alloc(System.Int32,RFReborn.Windows.Native.Enums.MemoryProtection)">
+            <summary>
+            Allocates memory in the remote process and returns the address of it.
+            </summary>
+            <param name="size">Size of memory to allocate.</param>
+            <param name="protFlags">Protection flags of the newly allocated memory. Default is <see cref="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_READWRITE" /></param>
+            <returns>The address to the allocated memory.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Free(System.IntPtr)">
+            <summary>
+            Frees allocated memory(ex with <see cref="M:RFReborn.Windows.Memory.IRemoteMemory.Alloc(System.Int32,RFReborn.Windows.Native.Enums.MemoryProtection)" />
+            </summary>
+            <param name="address">Address of the allocated memory to free.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Memory.RemoteMemory.Dispose">
+            <summary>
+            Releases all resources used.
+            </summary>
+        </member>
         <member name="T:RFReborn.Windows.Native.Enums.MemoryAllocation">
             <summary>
             The type of memory allocation.
@@ -1809,6 +1974,36 @@
                 area of the process that is inaccessible.
             </returns>
         </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.WriteProcessMemory(RFReborn.Windows.Native.Handle,System.IntPtr,System.Void*,System.Int32,System.Int32@)">
+            <summary>
+                Writes data to an area of memory in a specified process. The entire area to be written to must be accessible or the
+                operation fails.
+            </summary>
+            <param name="hProcess">
+                A handle to the process memory to be modified. The handle must have PROCESS_VM_WRITE and PROCESS_VM_OPERATION
+                access to the process.
+            </param>
+            <param name="lpBaseAddress">
+                A pointer to the base address in the specified process to which data is written. Before data transfer occurs, the
+                system verifies that all data in the base address and memory of the specified size is accessible for write access,
+                and if it is not accessible, the function fails.
+            </param>
+            <param name="lpBuffer">
+                A pointer to the buffer that contains data to be written in the address space of the specified process.
+            </param>
+            <param name="nSize">
+                The number of bytes to be written to the specified process.
+            </param>
+            <param name="lpNumberOfBytesWritten">
+                A pointer to a variable that receives the number of bytes transferred into the specified process. This parameter is
+                optional. If lpNumberOfBytesWritten is NULL, the parameter is ignored.
+            </param>
+            <returns>
+                If the function succeeds, the return value is nonzero. If the function fails, the return value is 0 (zero). To get
+                extended error information, call GetLastError.The function fails if the requested write operation crosses into an
+                area of the process that is inaccessible.
+            </returns>
+        </member>
         <member name="M:RFReborn.Windows.Native.Kernel32.IsWow64Process(System.IntPtr,System.Boolean@)">
             <summary>
                 Determines whether the specified process is running under WOW64.
@@ -2047,6 +2242,67 @@
                 If the function fails, the return value is zero.To get extended error information, call GetLastError.GetLastError
                 returns ERROR_NOT_ENOUGH_QUOTA when the limit is hit.
             </returns>
+        </member>
+        <member name="T:RFReborn.Windows.ProcessHelpers">
+            <summary>
+            Adds various methods to interact with <see cref="T:System.Diagnostics.Process"/>
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.ProcessHelpers.OpenProcess(RFReborn.Windows.Native.Enums.ProcessAccessFlags,System.Int32)">
+            <summary>
+                Opens an existing local process object.
+            </summary>
+            <param name="accessFlags">
+                The access to the process object. This access right is checked against the security descriptor for the process.
+                This parameter can be one or more of the process access rights. If the caller has enabled the SeDebugPrivilege
+                privilege, the requested access is granted regardless of the contents of the security descriptor.
+            </param>
+            <param name="procId">
+                The identifier of the local process to be opened. If the specified process is the System Process(0x00000000), the
+                function fails and the last error code is ERROR_INVALID_PARAMETER.If the specified process is the Idle process or
+                one of the CSRSS processes, this function fails and the last error code is ERROR_ACCESS_DENIED because their access
+                restrictions prevent user-level code from opening them. If you are using GetCurrentProcessId as an argument to this
+                function, consider using GetCurrentProcess instead of OpenProcess, for improved performance.
+            </param>
+            <returns>
+                If the function succeeds, the return value is an open handle to the specified process. If the function fails, the
+                return value is NULL.To get extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.ProcessHelpers.OpenProcess(RFReborn.Windows.Native.Enums.ProcessAccessFlags,System.Diagnostics.Process)">
+            <summary>
+                Opens an existing local process object.
+            </summary>
+            <param name="accessFlags">
+                The access to the process object. This access right is checked against the security descriptor for the process.
+                This parameter can be one or more of the process access rights. If the caller has enabled the SeDebugPrivilege
+                privilege, the requested access is granted regardless of the contents of the security descriptor.
+            </param>
+            <param name="proc">
+                The identifier of the local process to be opened. If the specified process is the System Process(0x00000000), the
+                function fails and the last error code is ERROR_INVALID_PARAMETER.If the specified process is the Idle process or
+                one of the CSRSS processes, this function fails and the last error code is ERROR_ACCESS_DENIED because their access
+                restrictions prevent user-level code from opening them. If you are using GetCurrentProcessId as an argument to this
+                function, consider using GetCurrentProcess instead of OpenProcess, for improved performance.
+            </param>
+            <returns>
+                If the function succeeds, the return value is an open handle to the specified process. If the function fails, the
+                return value is NULL.To get extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.ProcessHelpers.Is64Bit(System.Diagnostics.Process)">
+            <summary>
+            Determines whether the specified process is 64bit or not.
+            </summary>
+            <param name="proc">The process to check.</param>
+            <returns><see langword="true"/> if 64bit, otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.ProcessHelpers.ProcessExists(System.Diagnostics.Process)">
+            <summary>
+            Determines whether the specified process exists.
+            </summary>
+            <param name="process">The process to check.</param>
+            <returns><see langword="true"/> if process exists, otherwise <see langword="false"/>.</returns>
         </member>
     </members>
 </doc>
