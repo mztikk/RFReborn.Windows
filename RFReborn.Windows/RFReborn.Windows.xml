@@ -45,6 +45,397 @@
                 Key to send down.
             </param>
         </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.PostMessageKeyUp(System.IntPtr,RFReborn.Windows.Native.Enums.VirtualKeyCode)">
+            <summary>
+                Posts a WM_KEYUP message with a virtual key to a window using PostMessage.
+            </summary>
+            <param name="hWnd">
+                Handle of the window.
+            </param>
+            <param name="vkCode">
+                Key to send up.
+            </param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.PostMessageKeyPress(System.IntPtr,RFReborn.Windows.Native.Enums.VirtualKeyCode,System.Int32)">
+            <summary>
+                Posts a WM_KEYDOWN followed by a WM_KEYUP message after the delay, with the virtual key to the window using
+                PostMessage.
+            </summary>
+            <param name="hWnd">
+                Handle of the window.
+            </param>
+            <param name="vkCode">
+                Key to press-
+            </param>
+            <param name="delay">
+                Delay between WM_KEYDOWN and WM_KEYUP message. Default is 5
+            </param>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MemoryAllocation">
+            <summary>
+            The type of memory allocation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.Commit">
+            <summary>
+                Allocates memory charges (from the overall size of memory and the paging files on disk) for the specified reserved
+                memory pages.
+                The function also guarantees that when the caller later initially accesses the memory, the contents will be zero.
+                Actual physical pages are not allocated unless/until the virtual addresses are actually accessed.
+                To reserve and commit pages in one step, call <see cref="M:RFReborn.Windows.Native.Kernel32.VirtualAllocEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryAllocation,RFReborn.Windows.Native.Enums.MemoryProtection)" /> with MEM_COMMIT |
+                MEM_RESERVE.
+                The function fails if you attempt to commit a page that has not been reserved. The resulting error code is
+                ERROR_INVALID_ADDRESS.
+                An attempt to commit a page that is already committed does not cause the function to fail.
+                This means that you can commit pages without first determining the current commitment state of each page.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.Reserve">
+            <summary>
+                Reserves a range of the process's virtual address space without allocating any actual physical storage in memory or
+                in the paging file on disk.
+                You commit reserved pages by calling <see cref="M:RFReborn.Windows.Native.Kernel32.VirtualAllocEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryAllocation,RFReborn.Windows.Native.Enums.MemoryProtection)" /> again with MEM_COMMIT.
+                To reserve and commit pages in one step, call VirtualAllocEx with MEM_COMMIT | MEM_RESERVE.
+                Other memory allocation functions, such as malloc and LocalAlloc, cannot use reserved memory until it has been
+                released.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.Reset">
+            <summary>
+                Indicates that data in the memory range specified by lpAddress and dwSize is no longer of interest.
+                The pages should not be read from or written to the paging file.
+                However, the memory block will be used again later, so it should not be decommitted. This value cannot be used with
+                any other value.
+                Using this value does not guarantee that the range operated on with MEM_RESET will contain zeros. If you want the
+                range to contain zeros, decommit the memory and then recommit it.
+                When you use MEM_RESET, the VirtualAllocEx function ignores the value of fProtect. However, you must still set
+                fProtect to a valid protection value, such as PAGE_NOACCESS.
+                <see cref="M:RFReborn.Windows.Native.Kernel32.VirtualAllocEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryAllocation,RFReborn.Windows.Native.Enums.MemoryProtection)" /> returns an error if you use MEM_RESET and the range of memory is mapped to a
+                file.
+                A shared view is only acceptable if it is mapped to a paging file.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.TopDown">
+            <summary>
+                Allocates memory at the highest possible address. This can be slower than regular allocations, especially when
+                there are many allocations.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.Physical">
+            <summary>
+                Reserves an address range that can be used to map Address Windowing Extensions (AWE) pages.
+                This value must be used with MEM_RESERVE and no other values.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.ResetUndo">
+            <summary>
+                MEM_RESET_UNDO should only be called on an address range to which MEM_RESET was successfully applied earlier.
+                It indicates that the data in the specified memory range specified by lpAddress and dwSize is of interest to the
+                caller and attempts to reverse the effects of MEM_RESET.
+                If the function succeeds, that means all data in the specified address range is intact.
+                If the function fails, at least some of the data in the address range has been replaced with zeroes.
+                This value cannot be used with any other value.
+                If MEM_RESET_UNDO is called on an address range which was not MEM_RESET earlier, the behavior is undefined.
+                When you specify MEM_RESET, the <see cref="M:RFReborn.Windows.Native.Kernel32.VirtualAllocEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryAllocation,RFReborn.Windows.Native.Enums.MemoryProtection)" /> function ignores the value of flProtect.
+                However, you must still set flProtect to a valid protection value, such as PAGE_NOACCESS.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryAllocation.LargePages">
+            <summary>
+                Allocates memory using large page support.
+                The size and alignment must be a multiple of the large-page minimum. To obtain this value, use the
+                GetLargePageMinimum function.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MemoryProtection">
+            <summary>
+                The following are the memory-protection options; you must specify one of the following values when allocating or
+                protecting a page in memory. Protection attributes cannot be assigned to a portion of a page; they can only be
+                assigned to a whole page.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.ZeroAccess">
+            <summary>
+            Disables all access to the committed region of pages. An attempt to read from, write to, or execute the committed region results in an access violation.
+            This value is not officially present in the Microsoft's enumeration but can occur according to the MEMORY_BASIC_INFORMATION structure documentation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.NOACCESS">
+            <summary>
+                Disables all access to the committed region of pages. An attempt to read from, write to, or execute the committed
+                region results in an access violation. This flag is not supported by the CreateFileMapping function.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.READONLY">
+            <summary>
+                Enables read-only access to the committed region of pages. An attempt to write to the committed region results in
+                an access violation. If Data Execution Prevention is enabled, an attempt to execute code in the committed region
+                results in an access violation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.READWRITE">
+            <summary>
+                Enables read-only or read/write access to the committed region of pages. If Data Execution Prevention is enabled,
+                attempting to execute code in the committed region results in an access violation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.WRITECOPY">
+            <summary>
+                Enables read-only or copy-on-write access to a mapped view of a file mapping object. An attempt to write to a
+                committed copy-on-write page results in a private copy of the page being made for the process. The private page is
+                marked as READWRITE, and the change is written to the new page. If Data Execution Prevention is enabled, attempting
+                to execute code in the committed region results in an access violation. This flag is not supported by the
+                VirtualAlloc or VirtualAllocEx functions.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE">
+            <summary>
+                Enables execute access to the committed region of pages. An attempt to write to the committed region results in an
+                access violation. This flag is not supported by the CreateFileMapping function.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_READ">
+            <summary>
+                Enables execute or read-only access to the committed region of pages. An attempt to write to the committed region
+                results in an access violation. Windows Server 2003 and Windows XP: This attribute is not supported by the
+                CreateFileMapping function until Windows XP with SP2 and Windows Server 2003 with SP1.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_READWRITE">
+            <summary>
+                Enables execute, read-only, or read/write access to the committed region of pages. Windows Server 2003 and Windows
+                XP: This attribute is not supported by the CreateFileMapping function until Windows XP with SP2 and Windows Server
+                2003 with SP1.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_WRITECOPY">
+            <summary>
+                Enables execute, read-only, or copy-on-write access to a mapped view of a file mapping object. An attempt to write
+                to a committed copy-on-write page results in a private copy of the page being made for the process. The private
+                page is marked as EXECUTE_READWRITE, and the change is written to the new page. This flag is not supported by the
+                VirtualAlloc or VirtualAllocEx functions. Windows Vista, Windows Server 2003 and Windows XP: This attribute is not
+                supported by the CreateFileMapping function until Windows Vista with SP1 and Windows Server 2008.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.GUARD">
+            <summary>
+                Pages in the region become guard pages. Any attempt to access a guard page causes the system to raise a
+                STATUS_GUARD_VIOLATION exception and turn off the guard page status. Guard pages thus act as a one-time access
+                alarm. For more information, see Creating Guard Pages. When an access attempt leads the system to turn off guard
+                page status, the underlying page protection takes over. If a guard page exception occurs during a system service,
+                the service typically returns a failure status indicator. This value cannot be used with NOACCESS. This flag is not
+                supported by the CreateFileMapping function.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.NOCACHE">
+            <summary>
+                Sets all pages to be non-cachable. Applications should not use this attribute except when explicitly required for a
+                device. Using the interlocked functions with memory that is mapped with SEC_NOCACHE can result in an
+                EXCEPTION_ILLEGAL_INSTRUCTION exception. The NOCACHE flag cannot be used with the GUARD, NOACCESS, or WRITECOMBINE
+                flags. The NOCACHE flag can be used only when allocating private memory with the VirtualAlloc, VirtualAllocEx, or
+                VirtualAllocExNuma functions. To enable non-cached memory access for shared memory, specify the SEC_NOCACHE flag
+                when calling the CreateFileMapping function.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.WRITECOMBINE">
+            <summary>
+                Sets all pages to be write-combined. Applications should not use this attribute except when explicitly required for
+                a device. Using the interlocked functions with memory that is mapped as write-combined can result in an
+                EXCEPTION_ILLEGAL_INSTRUCTION exception. The WRITECOMBINE flag cannot be specified with the NOACCESS, GUARD, and
+                NOCACHE flags. The WRITECOMBINE flag can be used only when allocating private memory with the VirtualAlloc,
+                VirtualAllocEx, or VirtualAllocExNuma functions. To enable write-combined memory access for shared memory, specify
+                the SEC_WRITECOMBINE flag when calling the CreateFileMapping function. Windows Server 2003 and Windows XP: This
+                flag is not supported until Windows Server 2003 with SP1.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.TARGETS_INVALID">
+            <summary>
+                Sets all locations in the pages as invalid targets for CFG. Used along with any execute page protection like
+                EXECUTE, EXECUTE_READ, EXECUTE_READWRITE and EXECUTE_WRITECOPY. Any indirect call to locations in those pages will
+                fail CFG checks and the process will be terminated. The default behavior for executable pages allocated is to be
+                marked valid call targets for CFG. This flag is not supported by the VirtualProtect or CreateFileMapping functions.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryProtection.TARGETS_NO_UPDATE">
+            <summary>
+                Pages in the region will not have their CFG information updated while the protection changes for VirtualProtect.
+                For example, if the pages in the region was allocated using TARGETS_INVALID, then the invalid information will be
+                maintained while the page protection changes. This flag is only valid when the protection changes to an executable
+                type like EXECUTE, EXECUTE_READ, EXECUTE_READWRITE and EXECUTE_WRITECOPY. The default behavior for VirtualProtect
+                protection change to executable is to mark all locations as valid call targets for CFG.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MemoryRelease">
+            <summary>
+            The type of free operation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryRelease.Decommit">
+            <summary>
+                Decommits the specified region of committed pages. After the operation, the pages are in the reserved state.
+                The function does not fail if you attempt to decommit an uncommitted page.
+                This means that you can decommit a range of pages without first determining their current commitment state.
+                Do not use this value with MEM_RELEASE.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryRelease.Release">
+            <summary>
+                Releases the specified region of pages. After the operation, the pages are in the free state.
+                If you specify this value, dwSize must be 0 (zero), and lpAddress must point to the base address returned by the
+                VirtualAllocEx function when the region is reserved.
+                The function fails if either of these conditions is not met.
+                If any pages in the region are committed currently, the function first decommits, and then releases them.
+                The function does not fail if you attempt to release pages that are in different states, some reserved and some
+                committed.
+                This means that you can release a range of pages without first determining the current commitment state.
+                Do not use this value with MEM_DECOMMIT.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MemoryState">
+            <summary>
+            Memory-state options list.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryState.Commit">
+            <summary>
+            Indicates committed pages for which physical storage has been allocated, either in memory or in the paging file on disk.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryState.Free">
+            <summary>
+            Indicates free pages not accessible to the calling process and available to be allocated. 
+            For free pages, the information in the AllocationBase, AllocationProtect, Protect, and Type members is undefined.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryState.Reserve">
+            <summary>
+            Indicates reserved pages where a range of the process's virtual address space is reserved without any physical storage being allocated. 
+            For reserved pages, the information in the Protect member is undefined.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MemoryType">
+            <summary>
+            Memory-type options list.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryType.None">
+            <summary>
+            This value is not officially present in the Microsoft's enumeration but can occur after testing.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryType.Private">
+            <summary>
+            Indicates that the memory pages within the region are private (that is, not shared by other processes).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryType.Mapped">
+            <summary>
+            Indicates that the memory pages within the region are mapped into the view of a section.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MemoryType.Image">
+            <summary>
+            Indicates that the memory pages within the region are mapped into the view of an image section.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.ProcessAccessFlags">
+            <summary>
+                The Microsoft Windows security model enables you to control access to process objects. For more information about
+                security, see Access-Control Model.
+                When a user logs in, the system collects a set of data that uniquely identifies the user during the authentication
+                process, and stores it in an access token. This access token describes the security context of all processes
+                associated with the user. The security context of a process is the set of credentials given to the process or the
+                user account that created the process.
+                You can use a token to specify the current security context for a process using the CreateProcessWithTokenW
+                function. You can specify a security descriptor for a process when you call the CreateProcess, CreateProcessAsUser,
+                or CreateProcessWithLogonW function. If you specify NULL, the process gets a default security descriptor. The ACLs
+                in the default security descriptor for a process come from the primary or impersonation token of the creator.
+                To retrieve a process's security descriptor, call the GetSecurityInfo function. To change a process's security
+                descriptor, call the SetSecurityInfo function.
+                The valid access rights for process objects include the standard access rights and some process-specific access
+                rights. The following table lists the standard access rights used by all objects.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.Terminate">
+            <summary>
+                Required to terminate a process using TerminateProcess.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.CreateThread">
+            <summary>
+                Required to create a thread.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.VmOperation">
+            <summary>
+                Required to perform an operation on the address space of a process (see VirtualProtectEx and WriteProcessMemory).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.VmRead">
+            <summary>
+                Required to read memory in a process using ReadProcessMemory.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.VmWrite">
+            <summary>
+                Required to write to memory in a process using WriteProcessMemory.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.DupHandle">
+            <summary>
+                Required to duplicate a handle using DuplicateHandle.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.CreateProcess">
+            <summary>
+                Required to create a process.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.SetQuota">
+            <summary>
+                Required to set memory limits using SetProcessWorkingSetSize.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.SetInformation">
+            <summary>
+                Required to set certain information about a process, such as its priority class (see SetPriorityClass).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.QueryInformation">
+            <summary>
+                Required to retrieve certain information about a process, such as its token, exit code, and priority class (see
+                OpenProcessToken).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.SuspendResume">
+            <summary>
+                Required to suspend or resume a process.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.QueryLimitedInformation">
+            <summary>
+                Required to retrieve certain information about a process (see GetExitCodeProcess, GetPriorityClass, IsProcessInJob,
+                QueryFullProcessImageName). A handle that has the PROCESS_QUERY_INFORMATION access right is automatically granted
+                PROCESS_QUERY_LIMITED_INFORMATION.
+                Windows Server 2003 and Windows XP:  This access right is not supported.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.Synchronize">
+            <summary>
+                Required to wait for the process to terminate using the wait functions.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.ProcessAccessFlags.AllAccess">
+            <summary>
+                All possible access rights for a process object. Windows Server 2003 and Windows XP:  The size of the
+                PROCESS_ALL_ACCESS flag increased on Windows Server 2008 and Windows Vista. If an application compiled for Windows
+                Server 2008 and Windows Vista is run on Windows Server 2003 or Windows XP, the PROCESS_ALL_ACCESS flag is too large
+                and the function specifying this flag fails with ERROR_ACCESS_DENIED. To avoid this problem, specify the minimum
+                set of access rights required for the operation. If PROCESS_ALL_ACCESS must be used, set _WIN32_WINNT to the
+                minimum operating system targeted by your application (for example, #define _WIN32_WINNT _WIN32_WINNT_WINXP). For
+                more information, see Using the Windows Headers.
+            </summary>
+        </member>
         <member name="T:RFReborn.Windows.Native.Enums.VirtualKeyCode">
             <summary>
                 The list of VirtualKeyCodes (see: http://msdn.microsoft.com/en-us/library/ms645540(VS.85).aspx)
@@ -993,6 +1384,197 @@
             <summary>
             Sent to the focus window when the mouse wheel is rotated. The DefWindowProc function propagates the message to the window's parent.
             There should be no internal forwarding of the message, since DefWindowProc propagates it up the parent chain until it finds a window that processes it.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Handle">
+            <summary>
+            Win32 SafeHandle
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Handle.#ctor">
+            <summary>
+            Paramterless constructor for handles built by <see cref="M:RFReborn.Windows.Native.Kernel32.OpenProcess(RFReborn.Windows.Native.Enums.ProcessAccessFlags,System.Boolean,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Handle.#ctor(System.IntPtr)">
+            <summary>
+            Initializes a new handle with the handle as <see cref="T:System.IntPtr"/>
+            </summary>
+            <param name="handle"></param>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Handle.ReleaseHandle">
+            <summary>
+            Closes the handle with <see cref="M:RFReborn.Windows.Native.Kernel32.CloseHandle(System.IntPtr)"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Kernel32">
+            <summary>
+            Methods from the Kernel32.dll
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.CloseHandle(System.IntPtr)">
+            <summary>
+                Closes an open object handle.
+            </summary>
+            <param name="hObject">
+                A valid handle to an open object.
+            </param>
+            <returns>
+                If the function succeeds, the return value is nonzero. If the function fails, the return value is zero.To get
+                extended error information, call GetLastError. If the application is running under a debugger, the function will
+                throw an exception if it receives either a handle value that is not valid or a pseudo-handle value. This can happen
+                if you close a handle twice, or if you call CloseHandle on a handle returned by the FindFirstFile function instead
+                of calling the FindClose function.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.VirtualProtectEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryProtection,RFReborn.Windows.Native.Enums.MemoryProtection@)">
+            <summary>
+                Changes the protection on a region of committed pages in the virtual address space of a specified process.
+            </summary>
+            <param name="hProcess">
+                A handle to the process whose memory protection is to be changed. The handle must have the PROCESS_VM_OPERATION
+                access right.
+            </param>
+            <param name="lpAddress">
+                A pointer to the base address of the region of pages whose access protection attributes are to be changed. All
+                pages in the specified region must be within the same reserved region allocated when calling the VirtualAlloc or
+                VirtualAllocEx function using MEM_RESERVE. The pages cannot span adjacent reserved regions that were allocated by
+                separate calls to VirtualAlloc or VirtualAllocEx using MEM_RESERVE.
+            </param>
+            <param name="dwSize">
+                The size of the region whose access protection attributes are changed, in bytes. The region of affected pages
+                includes all pages containing one or more bytes in the range from the lpAddress parameter to (lpAddress+dwSize).
+                This means that a 2-byte range straddling a page boundary causes the protection attributes of both pages to be
+                changed.
+            </param>
+            <param name="flNewProtect">
+                The memory protection option. This parameter can be one of the memory protection constants. For mapped views, this
+                value must be compatible with the access protection specified when the view was mapped(see MapViewOfFile,
+                MapViewOfFileEx, and MapViewOfFileExNuma).
+            </param>
+            <param name="lpflOldProtect">
+                A pointer to a variable that receives the previous access protection of the first page in the specified region of
+                pages. If this parameter is NULL or does not point to a valid variable, the function fails.
+            </param>
+            <returns>
+                If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get
+                extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.VirtualQueryEx(RFReborn.Windows.Native.Handle,System.IntPtr,RFReborn.Windows.Native.Structs.MemoryBasicInformation@,System.Int32)">
+            <summary>
+            Retrieves information about a range of pages within the virtual address space of a specified process.
+            </summary>
+            <param name="hProcess">
+            A handle to the process whose memory information is queried. 
+            The handle must have been opened with the PROCESS_QUERY_INFORMATION access right, which enables using the handle to read information from the process object. 
+            For more information, see Process Security and Access Rights.
+            </param>
+            <param name="lpAddress">
+            A pointer to the base address of the region of pages to be queried. 
+            This value is rounded down to the next page boundary. 
+            To determine the size of a page on the host computer, use the GetSystemInfo function. 
+            If lpAddress specifies an address above the highest memory address accessible to the process, the function fails with ERROR_INVALID_PARAMETER.
+            </param>
+            <param name="lpBuffer">[Out] A pointer to a <see cref="T:RFReborn.Windows.Native.Structs.MemoryBasicInformation"/> structure in which information about the specified page range is returned.</param>
+            <param name="dwLength">The size of the buffer pointed to by the lpBuffer parameter, in bytes.</param>
+            <returns>
+            The return value is the actual number of bytes returned in the information buffer. 
+            If the function fails, the return value is zero. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.VirtualAllocEx(RFReborn.Windows.Native.Handle,System.IntPtr,System.Int32,RFReborn.Windows.Native.Enums.MemoryAllocation,RFReborn.Windows.Native.Enums.MemoryProtection)">
+            <summary>
+            Reserves or commits a region of memory within the virtual address space of a specified process. The function initializes the memory it allocates to zero, unless MEM_RESET is used.
+            To specify the NUMA node for the physical memory, see VirtualAllocExNuma.
+            </summary>
+            <param name="hProcess">
+            The handle to a process. The function allocates memory within the virtual address space of this process. 
+            The handle must have the PROCESS_VM_OPERATION access right. For more information, see Process Security and Access Rights.
+            </param>
+            <param name="lpAddress">
+            The pointer that specifies a desired starting address for the region of pages that you want to allocate. 
+            If you are reserving memory, the function rounds this address down to the nearest multiple of the allocation granularity. 
+            If you are committing memory that is already reserved, the function rounds this address down to the nearest page boundary. 
+            To determine the size of a page and the allocation granularity on the host computer, use the GetSystemInfo function.
+            </param>
+            <param name="dwSize">
+            The size of the region of memory to allocate, in bytes. 
+            If lpAddress is NULL, the function rounds dwSize up to the next page boundary. 
+            If lpAddress is not NULL, the function allocates all pages that contain one or more bytes in the range from lpAddress to lpAddress+dwSize. 
+            This means, for example, that a 2-byte range that straddles a page boundary causes the function to allocate both pages.
+            </param>
+            <param name="flAllocationType">[Flags] The type of memory allocation.</param>
+            <param name="flProtect">[Flags] The memory protection for the region of pages to be allocated.</param>
+            <returns>
+            If the function succeeds, the return value is the base address of the allocated region of pages. 
+            If the function fails, the return value is NULL. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.OpenProcess(RFReborn.Windows.Native.Enums.ProcessAccessFlags,System.Boolean,System.Int32)">
+            <summary>
+                Opens an existing local process object.
+            </summary>
+            <param name="dwDesiredAccess">
+                The access to the process object. This access right is checked against the security descriptor for the process.
+                This parameter can be one or more of the process access rights. If the caller has enabled the SeDebugPrivilege
+                privilege, the requested access is granted regardless of the contents of the security descriptor.
+            </param>
+            <param name="bInheritHandle">
+                If this value is TRUE, processes created by this process will inherit the handle. Otherwise, the processes do not
+                inherit this handle.
+            </param>
+            <param name="dwProcessId">
+                The identifier of the local process to be opened. If the specified process is the System Process(0x00000000), the
+                function fails and the last error code is ERROR_INVALID_PARAMETER.If the specified process is the Idle process or
+                one of the CSRSS processes, this function fails and the last error code is ERROR_ACCESS_DENIED because their access
+                restrictions prevent user-level code from opening them. If you are using GetCurrentProcessId as an argument to this
+                function, consider using GetCurrentProcess instead of OpenProcess, for improved performance.
+            </param>
+            <returns>
+                If the function succeeds, the return value is an open handle to the specified process. If the function fails, the
+                return value is NULL.To get extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Structs.MemoryBasicInformation">
+            <summary>
+            Contains information about a range of pages in the virtual address space of a process. The VirtualQuery and <see cref="M:RFReborn.Windows.Native.Kernel32.VirtualQueryEx(RFReborn.Windows.Native.Handle,System.IntPtr,RFReborn.Windows.Native.Structs.MemoryBasicInformation@,System.Int32)"/> functions use this structure.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.BaseAddress">
+            <summary>
+            A pointer to the base address of the region of pages.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.AllocationBase">
+            <summary>
+            A pointer to the base address of a range of pages allocated by the VirtualAlloc function. The page pointed to by the BaseAddress member is contained within this allocation range.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.AllocationProtect">
+            <summary>
+            The memory protection option when the region was initially allocated. This member can be one of the memory protection constants or 0 if the caller does not have access.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.RegionSize">
+            <summary>
+            The size of the region beginning at the base address in which all pages have identical attributes, in bytes.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.State">
+            <summary>
+            The state of the pages in the region.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.Protect">
+            <summary>
+            The access protection of the pages in the region. This member is one of the values listed for the AllocationProtect member.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Structs.MemoryBasicInformation.Type">
+            <summary>
+            The type of pages in the region.
             </summary>
         </member>
         <member name="T:RFReborn.Windows.Native.User32">
