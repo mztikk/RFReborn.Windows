@@ -288,6 +288,19 @@
             <param name="protFlags">Protection flags of the newly allocated memory. Default is <see cref="F:RFReborn.Windows.Native.Enums.MemoryProtection.EXECUTE_READWRITE"/></param>
             <returns>The address to the allocated memory.</returns>
         </member>
+        <member name="M:RFReborn.Windows.Memory.ModuleStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between offset and (offset + count - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.</returns>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset">offset</paramref> and <paramref name="count">count</paramref> is larger than the buffer length.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer">buffer</paramref> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset">offset</paramref> or <paramref name="count">count</paramref> is negative.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading.</exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        </member>
         <member name="T:RFReborn.Windows.Memory.RemoteMemory">
             <summary>
             Implementation of <see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/>
@@ -1946,6 +1959,35 @@
             </returns>
         </member>
         <member name="M:RFReborn.Windows.Native.Kernel32.ReadProcessMemory(RFReborn.Windows.Native.Handle,System.IntPtr,System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+                Reads data from an area of memory in a specified process. The entire area to be read must be accessible or the
+                operation fails.
+            </summary>
+            <param name="hProcess">
+                A handle to the process with memory that is being read. The handle must have PROCESS_VM_READ access to the process.
+            </param>
+            <param name="lpBaseAddress">
+                A pointer to the base address in the specified process from which to read. Before any data transfer occurs, the
+                system verifies that all data in the base address and memory of the specified size is accessible for read access,
+                and if it is not accessible the function fails.
+            </param>
+            <param name="lpBuffer">
+                A pointer to a buffer that receives the contents from the address space of the specified process.
+            </param>
+            <param name="nSize">
+                The number of bytes to be read from the specified process.
+            </param>
+            <param name="lpNumberOfBytesRead">
+                A pointer to a variable that receives the number of bytes transferred into the specified buffer. If
+                lpNumberOfBytesRead is NULL, the parameter is ignored.
+            </param>
+            <returns>
+                If the function succeeds, the return value is nonzero. If the function fails, the return value is 0 (zero). To
+                get extended error information, call GetLastError. The function fails if the requested read operation crosses into
+                an area of the process that is inaccessible.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.Kernel32.ReadProcessMemory(RFReborn.Windows.Native.Handle,System.IntPtr,System.Void*,System.Int32,System.Int32@)">
             <summary>
                 Reads data from an area of memory in a specified process. The entire area to be read must be accessible or the
                 operation fails.

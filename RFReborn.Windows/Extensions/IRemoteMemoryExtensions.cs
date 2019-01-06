@@ -1,13 +1,15 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using RFReborn.AoB;
 using RFReborn.Windows.Memory;
+using RFReborn.Windows.Native;
 
 namespace RFReborn.Windows.Extensions
 {
     /// <summary>
     /// Extends <see cref="IRemoteMemory"/>
     /// </summary>
-    public static class IRemoteMemoryExtensions
+    public static unsafe class IRemoteMemoryExtensions
     {
         #region AoB_Scanner
         /// <summary>
@@ -43,6 +45,19 @@ namespace RFReborn.Windows.Extensions
             }
 
             return processModule.BaseAddress.ToInt64() + found;
+        }
+
+        internal static int ReadBytes(this IRemoteMemory memory, IntPtr address, void* buffer, int count)
+        {
+            if (!memory.ProcessHandle.IsInvalid
+                && !memory.ProcessHandle.IsClosed
+                && address != IntPtr.Zero
+                && Kernel32.ReadProcessMemory(memory.ProcessHandle, address, buffer, count, out var numBytesRead))
+            {
+                return numBytesRead;
+            }
+
+            throw new Exception($"Couldn't read {count} bytes from 0x{address.ToString("X")}.");
         }
         #endregion
     }
