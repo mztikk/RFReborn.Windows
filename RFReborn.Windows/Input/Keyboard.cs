@@ -160,5 +160,60 @@ namespace RFReborn.Windows.Input
             lParam |= 0xC0000000;
             User32.PostMessage(hWnd, WindowsMessage.WM_KEYUP, (uint)vkCode, lParam);
         }
+
+        /// <summary>
+        ///     Sends a string(every char in a string) to the window using PostMessage.
+        ///     If a char requires a modifier(i.e. '?') it will use SendInput to send the modifier, because posting the modifier
+        ///     key doesn't translate to upper-case variants of a key because WM_CHAR translates virtual key codes with keyboard
+        ///     states.
+        /// </summary>
+        /// <param name="hWnd">
+        ///     Handle of the window.
+        /// </param>
+        /// <param name="textToSend">
+        ///     String to send,
+        /// </param>
+        /// <param name="delay">
+        ///     Delay between each PostMessage call.
+        /// </param>
+        public static void PostMessageString(IntPtr hWnd, string textToSend, int delay = 5)
+        {
+            for (var i = 0; i < textToSend.Length; i++)
+            {
+                (VirtualKeyCode key, Modifier mod) = VkKeyScan(textToSend[i]);
+                switch (mod)
+                {
+                    case Modifier.Shift:
+                        PostMessageKeyDown(hWnd, VirtualKeyCode.SHIFT);
+                        break;
+                    case Modifier.Ctrl:
+                        PostMessageKeyDown(hWnd, VirtualKeyCode.CONTROL);
+                        break;
+                    case Modifier.Alt:
+                        PostMessageKeyDown(hWnd, VirtualKeyCode.MENU);
+                        break;
+                }
+
+                PostMessageKeyPress(hWnd, key, delay);
+
+                switch (mod)
+                {
+                    case Modifier.Shift:
+                        PostMessageKeyUp(hWnd, VirtualKeyCode.SHIFT);
+                        break;
+                    case Modifier.Ctrl:
+                        PostMessageKeyUp(hWnd, VirtualKeyCode.CONTROL);
+                        break;
+                    case Modifier.Alt:
+                        PostMessageKeyUp(hWnd, VirtualKeyCode.MENU);
+                        break;
+                }
+
+                if (i < textToSend.Length - 1)
+                {
+                    Thread.Sleep(delay);
+                }
+            }
+        }
     }
 }

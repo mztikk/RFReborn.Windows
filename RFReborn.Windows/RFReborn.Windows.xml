@@ -21,6 +21,31 @@
                 Provides methods to manipulate and generate Keyboard input.
             </summary>
         </member>
+        <member name="T:RFReborn.Windows.Input.Keyboard.Modifier">
+            <summary>
+                Modifier Keys.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Input.Keyboard.Modifier.None">
+            <summary>
+                No modifier.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Input.Keyboard.Modifier.Shift">
+            <summary>
+                Shift modifier.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Input.Keyboard.Modifier.Ctrl">
+            <summary>
+                Ctrl modifier.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Input.Keyboard.Modifier.Alt">
+            <summary>
+                Alt modifier.
+            </summary>
+        </member>
         <member name="M:RFReborn.Windows.Input.Keyboard.IsExtendedKey(RFReborn.Windows.Native.Enums.VirtualKeyCode)">
             <summary>
                 Determines if the <see cref="T:RFReborn.Windows.Native.Enums.VirtualKeyCode" /> is an ExtendedKey
@@ -33,6 +58,15 @@
                 (CTRL+PAUSE) key; the PRINT SCRN key; and the divide (/) and ENTER keys in the numeric keypad.
                 See http://msdn.microsoft.com/en-us/library/ms646267(v=vs.85).aspx Section "Extended-Key Flag"
             </remarks>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.VkKeyScan(System.Char)">
+            <summary>
+                Translates a char to a virtual key code and modifier.
+            </summary>
+            <param name="ch">
+                Char to translate.
+            </param>
+            <returns>Virtual key code of the car and the modifier needed.</returns>
         </member>
         <member name="M:RFReborn.Windows.Input.Keyboard.PostMessageKeyDown(System.IntPtr,RFReborn.Windows.Native.Enums.VirtualKeyCode)">
             <summary>
@@ -69,6 +103,23 @@
             </param>
             <param name="delay">
                 Delay between WM_KEYDOWN and WM_KEYUP message. Default is 5
+            </param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.PostMessageString(System.IntPtr,System.String,System.Int32)">
+            <summary>
+                Sends a string(every char in a string) to the window using PostMessage.
+                If a char requires a modifier(i.e. '?') it will use SendInput to send the modifier, because posting the modifier
+                key doesn't translate to upper-case variants of a key because WM_CHAR translates virtual key codes with keyboard
+                states.
+            </summary>
+            <param name="hWnd">
+                Handle of the window.
+            </param>
+            <param name="textToSend">
+                String to send,
+            </param>
+            <param name="delay">
+                Delay between each PostMessage call.
             </param>
         </member>
         <member name="T:RFReborn.Windows.Native.Enums.MemoryAllocation">
