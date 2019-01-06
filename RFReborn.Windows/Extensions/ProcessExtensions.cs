@@ -35,7 +35,7 @@ namespace RFReborn.Windows.Extensions
         }
 
         /// <summary>
-        /// Searches the <see cref="ProcessModuleCollection"/> for the specified name.
+        /// Searches the <see cref="ProcessModuleCollection"/> for <paramref name="moduleName"/>.
         /// </summary>
         /// <param name="proc"><see cref="Process"/> which modules to search</param>
         /// <param name="moduleName">Module name to search for.</param>

@@ -48,7 +48,7 @@
         </member>
         <member name="M:RFReborn.Windows.Extensions.ProcessExtensions.GetModule(System.Diagnostics.Process,System.String)">
             <summary>
-            Searches the <see cref="T:System.Diagnostics.ProcessModuleCollection"/> for the specified name.
+            Searches the <see cref="T:System.Diagnostics.ProcessModuleCollection"/> for <paramref name="moduleName"/>.
             </summary>
             <param name="proc"><see cref="T:System.Diagnostics.Process"/> which modules to search</param>
             <param name="moduleName">Module name to search for.</param>
