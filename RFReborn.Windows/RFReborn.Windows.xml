@@ -16,6 +16,885 @@
             <param name="proc">Process to get arguments from.</param>
             <returns>String of the commandline arguments if successfull, <see cref="F:System.String.Empty"/> otherwise.</returns>
         </member>
+        <member name="T:RFReborn.Windows.Native.Enums.VirtualKeyCode">
+            <summary>
+                The list of VirtualKeyCodes (see: http://msdn.microsoft.com/en-us/library/ms645540(VS.85).aspx)
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LBUTTON">
+            <summary>
+                Left mouse button
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RBUTTON">
+            <summary>
+                Right mouse button
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CANCEL">
+            <summary>
+                Control-break processing
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MBUTTON">
+            <summary>
+                Middle mouse button (three-button mouse) - NOT contiguous with LBUTTON and RBUTTON
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.XBUTTON1">
+            <summary>
+                Windows 2000/XP: X1 mouse button - NOT contiguous with LBUTTON and RBUTTON
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.XBUTTON2">
+            <summary>
+                Windows 2000/XP: X2 mouse button - NOT contiguous with LBUTTON and RBUTTON
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BACK">
+            <summary>
+                BACKSPACE key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.TAB">
+            <summary>
+                TAB key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CLEAR">
+            <summary>
+                CLEAR key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RETURN">
+            <summary>
+                ENTER key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SHIFT">
+            <summary>
+                SHIFT key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CONTROL">
+            <summary>
+                CTRL key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MENU">
+            <summary>
+                ALT key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PAUSE">
+            <summary>
+                PAUSE key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CAPITAL">
+            <summary>
+                CAPS LOCK key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.KANA">
+            <summary>
+                Input Method Editor (IME) Kana mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.HANGEUL">
+            <summary>
+                IME Hanguel mode (maintained for compatibility; use HANGUL)
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.HANGUL">
+            <summary>
+                IME Hangul mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.JUNJA">
+            <summary>
+                IME Junja mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.FINAL">
+            <summary>
+                IME final mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.HANJA">
+            <summary>
+                IME Hanja mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.KANJI">
+            <summary>
+                IME Kanji mode
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.ESCAPE">
+            <summary>
+                ESC key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CONVERT">
+            <summary>
+                IME convert
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NONCONVERT">
+            <summary>
+                IME nonconvert
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.ACCEPT">
+            <summary>
+                IME accept
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MODECHANGE">
+            <summary>
+                IME mode change request
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SPACE">
+            <summary>
+                SPACEBAR
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PRIOR">
+            <summary>
+                PAGE UP key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NEXT">
+            <summary>
+                PAGE DOWN key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.END">
+            <summary>
+                END key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.HOME">
+            <summary>
+                HOME key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LEFT">
+            <summary>
+                LEFT ARROW key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.UP">
+            <summary>
+                UP ARROW key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RIGHT">
+            <summary>
+                RIGHT ARROW key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.DOWN">
+            <summary>
+                DOWN ARROW key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SELECT">
+            <summary>
+                SELECT key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PRINT">
+            <summary>
+                PRINT key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.EXECUTE">
+            <summary>
+                EXECUTE key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SNAPSHOT">
+            <summary>
+                PRINT SCREEN key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.INSERT">
+            <summary>
+                INS key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.DELETE">
+            <summary>
+                DEL key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.HELP">
+            <summary>
+                HELP key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_0">
+            <summary>
+                0 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_1">
+            <summary>
+                1 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_2">
+            <summary>
+                2 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_3">
+            <summary>
+                3 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_4">
+            <summary>
+                4 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_5">
+            <summary>
+                5 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_6">
+            <summary>
+                6 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_7">
+            <summary>
+                7 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_8">
+            <summary>
+                8 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_9">
+            <summary>
+                9 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_A">
+            <summary>
+                A key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_B">
+            <summary>
+                B key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_C">
+            <summary>
+                C key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_D">
+            <summary>
+                D key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_E">
+            <summary>
+                E key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_F">
+            <summary>
+                F key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_G">
+            <summary>
+                G key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_H">
+            <summary>
+                H key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_I">
+            <summary>
+                I key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_J">
+            <summary>
+                J key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_K">
+            <summary>
+                K key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_L">
+            <summary>
+                L key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_M">
+            <summary>
+                M key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_N">
+            <summary>
+                N key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_O">
+            <summary>
+                O key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_P">
+            <summary>
+                P key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_Q">
+            <summary>
+                Q key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_R">
+            <summary>
+                R key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_S">
+            <summary>
+                S key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_T">
+            <summary>
+                T key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_U">
+            <summary>
+                U key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_V">
+            <summary>
+                V key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_W">
+            <summary>
+                W key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_X">
+            <summary>
+                X key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_Y">
+            <summary>
+                Y key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VK_Z">
+            <summary>
+                Z key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LWIN">
+            <summary>
+                Left Windows key (Microsoft Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RWIN">
+            <summary>
+                Right Windows key (Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.APPS">
+            <summary>
+                Applications key (Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SLEEP">
+            <summary>
+                Computer Sleep key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD0">
+            <summary>
+                Numeric keypad 0 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD1">
+            <summary>
+                Numeric keypad 1 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD2">
+            <summary>
+                Numeric keypad 2 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD3">
+            <summary>
+                Numeric keypad 3 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD4">
+            <summary>
+                Numeric keypad 4 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD5">
+            <summary>
+                Numeric keypad 5 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD6">
+            <summary>
+                Numeric keypad 6 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD7">
+            <summary>
+                Numeric keypad 7 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD8">
+            <summary>
+                Numeric keypad 8 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMPAD9">
+            <summary>
+                Numeric keypad 9 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MULTIPLY">
+            <summary>
+                Multiply key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.ADD">
+            <summary>
+                Add key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SEPARATOR">
+            <summary>
+                Separator key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SUBTRACT">
+            <summary>
+                Subtract key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.DECIMAL">
+            <summary>
+                Decimal key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.DIVIDE">
+            <summary>
+                Divide key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F1">
+            <summary>
+                F1 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F2">
+            <summary>
+                F2 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F3">
+            <summary>
+                F3 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F4">
+            <summary>
+                F4 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F5">
+            <summary>
+                F5 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F6">
+            <summary>
+                F6 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F7">
+            <summary>
+                F7 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F8">
+            <summary>
+                F8 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F9">
+            <summary>
+                F9 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F10">
+            <summary>
+                F10 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F11">
+            <summary>
+                F11 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F12">
+            <summary>
+                F12 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F13">
+            <summary>
+                F13 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F14">
+            <summary>
+                F14 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F15">
+            <summary>
+                F15 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F16">
+            <summary>
+                F16 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F17">
+            <summary>
+                F17 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F18">
+            <summary>
+                F18 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F19">
+            <summary>
+                F19 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F20">
+            <summary>
+                F20 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F21">
+            <summary>
+                F21 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F22">
+            <summary>
+                F22 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F23">
+            <summary>
+                F23 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.F24">
+            <summary>
+                F24 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NUMLOCK">
+            <summary>
+                NUM LOCK key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.SCROLL">
+            <summary>
+                SCROLL LOCK key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LSHIFT">
+            <summary>
+                Left SHIFT key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RSHIFT">
+            <summary>
+                Right SHIFT key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LCONTROL">
+            <summary>
+                Left CONTROL key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RCONTROL">
+            <summary>
+                Right CONTROL key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LMENU">
+            <summary>
+                Left MENU key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.RMENU">
+            <summary>
+                Right MENU key - Used only as parameters to GetAsyncKeyState() and GetKeyState()
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_BACK">
+            <summary>
+                Windows 2000/XP: Browser Back key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_FORWARD">
+            <summary>
+                Windows 2000/XP: Browser Forward key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_REFRESH">
+            <summary>
+                Windows 2000/XP: Browser Refresh key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_STOP">
+            <summary>
+                Windows 2000/XP: Browser Stop key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_SEARCH">
+            <summary>
+                Windows 2000/XP: Browser Search key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_FAVORITES">
+            <summary>
+                Windows 2000/XP: Browser Favorites key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.BROWSER_HOME">
+            <summary>
+                Windows 2000/XP: Browser Start and Home key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VOLUME_MUTE">
+            <summary>
+                Windows 2000/XP: Volume Mute key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VOLUME_DOWN">
+            <summary>
+                Windows 2000/XP: Volume Down key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.VOLUME_UP">
+            <summary>
+                Windows 2000/XP: Volume Up key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MEDIA_NEXT_TRACK">
+            <summary>
+                Windows 2000/XP: Next Track key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MEDIA_PREV_TRACK">
+            <summary>
+                Windows 2000/XP: Previous Track key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MEDIA_STOP">
+            <summary>
+                Windows 2000/XP: Stop Media key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.MEDIA_PLAY_PAUSE">
+            <summary>
+                Windows 2000/XP: Play/Pause Media key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LAUNCH_MAIL">
+            <summary>
+                Windows 2000/XP: Start Mail key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LAUNCH_MEDIA_SELECT">
+            <summary>
+                Windows 2000/XP: Select Media key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LAUNCH_APP1">
+            <summary>
+                Windows 2000/XP: Start Application 1 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.LAUNCH_APP2">
+            <summary>
+                Windows 2000/XP: Start Application 2 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_1">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the ';:'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_PLUS">
+            <summary>
+                Windows 2000/XP: For any country/region, the '+' key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_COMMA">
+            <summary>
+                Windows 2000/XP: For any country/region, the ',' key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_MINUS">
+            <summary>
+                Windows 2000/XP: For any country/region, the '-' key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_PERIOD">
+            <summary>
+                Windows 2000/XP: For any country/region, the '.' key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_2">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the '/?'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_3">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the '`~'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_4">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the '[{'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_5">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the '\|'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_6">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the ']}'
+                key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_7">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the
+                'single-quote/double-quote' key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_8">
+            <summary>
+                Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_102">
+            <summary>
+                Windows 2000/XP: Either the angle bracket key or the backslash key on the RT 102-key keyboard
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PROCESSKEY">
+            <summary>
+                Windows 95/98/Me, Windows NT 4.0, Windows 2000/XP: IME PROCESS key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PACKET">
+            <summary>
+                Windows 2000/XP: Used to pass Unicode characters as if they were keystrokes. The PACKET key is the low word of a
+                32-bit Virtual Key value used for non-keyboard input methods. For more information, see Remark in KEYBDINPUT,
+                SendInput, WM_KEYDOWN, and WM_KEYUP
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.ATTN">
+            <summary>
+                Attn key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.CRSEL">
+            <summary>
+                CrSel key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.EXSEL">
+            <summary>
+                ExSel key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.EREOF">
+            <summary>
+                Erase EOF key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PLAY">
+            <summary>
+                Play key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.ZOOM">
+            <summary>
+                Zoom key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.NONAME">
+            <summary>
+                Reserved
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.PA1">
+            <summary>
+                PA1 key
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.VirtualKeyCode.OEM_CLEAR">
+            <summary>
+                Clear key
+            </summary>
+        </member>
         <member name="T:RFReborn.Windows.Native.User32">
             <summary>
             Methods from the User32.dll
