@@ -46,6 +46,14 @@
             <param name="proc">Process to get arguments from.</param>
             <returns>String of the commandline arguments if successfull, <see cref="F:System.String.Empty"/> otherwise.</returns>
         </member>
+        <member name="M:RFReborn.Windows.Extensions.ProcessExtensions.GetModule(System.Diagnostics.Process,System.String)">
+            <summary>
+            Searches the <see cref="T:System.Diagnostics.ProcessModuleCollection"/> for the specified name.
+            </summary>
+            <param name="proc"><see cref="T:System.Diagnostics.Process"/> which modules to search</param>
+            <param name="moduleName">Module name to search for.</param>
+            <returns><see cref="T:System.Diagnostics.ProcessModule"/></returns>
+        </member>
         <member name="T:RFReborn.Windows.Input.Keyboard">
             <summary>
                 Provides methods to manipulate and generate Keyboard input.
