@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
 
@@ -53,6 +54,56 @@ namespace RFReborn.Windows.Input
             }
 
             User32.PostMessage(hWnd, WindowsMessage.WM_KEYDOWN, (uint)vkCode, lParam);
+        }
+
+        /// <summary>
+        ///     Posts a WM_KEYUP message with a virtual key to a window using PostMessage.
+        /// </summary>
+        /// <param name="hWnd">
+        ///     Handle of the window.
+        /// </param>
+        /// <param name="vkCode">
+        ///     Key to send up.
+        /// </param>
+        public static void PostMessageKeyUp(IntPtr hWnd, VirtualKeyCode vkCode)
+        {
+            var scanCode = User32.MapVirtualKey((uint)vkCode, 0);
+            var lParam = 0xC0000001 | (scanCode << 16);
+            if (IsExtendedKey(vkCode))
+            {
+                lParam |= 0x01000000;
+            }
+
+            User32.PostMessage(hWnd, WindowsMessage.WM_KEYUP, (uint)vkCode, lParam);
+        }
+
+        /// <summary>
+        ///     Posts a WM_KEYDOWN followed by a WM_KEYUP message after the delay, with the virtual key to the window using
+        ///     PostMessage.
+        /// </summary>
+        /// <param name="hWnd">
+        ///     Handle of the window.
+        /// </param>
+        /// <param name="vkCode">
+        ///     Key to press-
+        /// </param>
+        /// <param name="delay">
+        ///     Delay between WM_KEYDOWN and WM_KEYUP message. Default is 5
+        /// </param>
+        public static void PostMessageKeyPress(IntPtr hWnd, VirtualKeyCode vkCode, int delay = 5)
+        {
+            var scanCode = User32.MapVirtualKey((uint)vkCode, 0);
+
+            var lParam = 0x00000001 | (scanCode << 16);
+            if (IsExtendedKey(vkCode))
+            {
+                lParam |= 0x01000000;
+            }
+
+            User32.PostMessage(hWnd, WindowsMessage.WM_KEYDOWN, (uint)vkCode, lParam);
+            Thread.Sleep(delay);
+            lParam |= 0xC0000000;
+            User32.PostMessage(hWnd, WindowsMessage.WM_KEYUP, (uint)vkCode, lParam);
         }
     }
 }
