@@ -16,9 +16,9 @@ namespace RFReborn.Windows.Extensions
         public static string GetCommandLine(this Process proc)
         {
             using (var searcher = new ManagementObjectSearcher(
-              $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {proc.Id}"))
+                          $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {proc.Id}"))
             {
-                foreach (var item in searcher.Get())
+                foreach (ManagementBaseObject item in searcher.Get())
                 {
                     var cmd = item["CommandLine"];
                     if (cmd == null)
