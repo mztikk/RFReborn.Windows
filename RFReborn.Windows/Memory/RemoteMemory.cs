@@ -59,7 +59,7 @@ namespace RFReborn.Windows.Memory
         }
 
         /// <summary>
-        /// Reads a valu of type <typeparamref name="T" /> from the remote process at a specified address.
+        /// Reads a value of type <typeparamref name="T" /> from the remote process at a specified address.
         /// </summary>
         /// <typeparam name="T">Type of value.</typeparam>
         /// <param name="address">Address where to read the value from.</param>

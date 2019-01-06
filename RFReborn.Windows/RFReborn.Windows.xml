@@ -4,6 +4,36 @@
         <name>RFReborn.Windows</name>
     </assembly>
     <members>
+        <member name="T:RFReborn.Windows.Extensions.IRemoteMemoryExtensions">
+            <summary>
+            Extends <see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/>
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Extensions.IRemoteMemoryExtensions.FindSignature(RFReborn.Windows.Memory.IRemoteMemory,System.String)">
+            <summary>
+            Searches for a PEiD style string signature inside of the processes main module.
+            </summary>
+            <param name="remoteMem"><see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/> used to read from the process.</param>
+            <param name="signature">PEiD style string signature to search for.</param>
+            <returns>The address of the <see cref="T:RFReborn.AoB.Signature"/> if it is found; -1 otherwise</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Extensions.IRemoteMemoryExtensions.FindSignature(RFReborn.Windows.Memory.IRemoteMemory,RFReborn.AoB.Signature)">
+            <summary>
+            Searches for a given <see cref="T:RFReborn.AoB.Signature"/> inside of the processes main module.
+            </summary>
+            <param name="remoteMem"><see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/> used to read from the process.</param>
+            <param name="signature">The <see cref="T:RFReborn.AoB.Signature"/> to search for.</param>
+            <returns>The address of the <see cref="T:RFReborn.AoB.Signature"/> if it is found; -1 otherwise</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Extensions.IRemoteMemoryExtensions.FindSignature(RFReborn.Windows.Memory.IRemoteMemory,RFReborn.AoB.Signature,System.Diagnostics.ProcessModule)">
+            <summary>
+            Searches for a given <see cref="T:RFReborn.AoB.Signature"/> inside of a <see cref="T:System.Diagnostics.ProcessModule"/>.
+            </summary>
+            <param name="remoteMem"><see cref="T:RFReborn.Windows.Memory.IRemoteMemory"/> used to read from the process.</param>
+            <param name="signature">The <see cref="T:RFReborn.AoB.Signature"/> to search for.</param>
+            <param name="processModule">The <see cref="T:System.Diagnostics.ProcessModule"/> to search in.</param>
+            <returns>The address of the <see cref="T:RFReborn.AoB.Signature"/> if it is found; -1 otherwise</returns>
+        </member>
         <member name="T:RFReborn.Windows.Extensions.ProcessExtensions">
             <summary>
             Extends <see cref="T:System.Diagnostics.Process"/>
@@ -301,7 +331,7 @@
         </member>
         <member name="M:RFReborn.Windows.Memory.RemoteMemory.Read``1(System.IntPtr,System.Boolean)">
             <summary>
-            Reads a valu of type <typeparamref name="T" /> from the remote process at a specified address.
+            Reads a value of type <typeparamref name="T" /> from the remote process at a specified address.
             </summary>
             <typeparam name="T">Type of value.</typeparam>
             <param name="address">Address where to read the value from.</param>
