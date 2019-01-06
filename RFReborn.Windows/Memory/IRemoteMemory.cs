@@ -1,31 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
-using RFReborn.Windows.Native;
-using RFReborn.Windows.Native.Enums;
 
 namespace RFReborn.Windows.Memory
 {
     /// <summary>
     /// Provides methods to interact with the memory of a remote process.
     /// </summary>
-    public interface IRemoteMemory : IDisposable
+    public interface IRemoteMemory : IOpenProcess
     {
-        /// <summary>
-        /// The native process we're interacting with.
-        /// </summary>
-        Process NativeProcess { get; }
-
-        /// <summary>
-        /// Handle to the process.
-        /// </summary>
-        Handle ProcessHandle { get; }
-
-        /// <summary>
-        /// Main module of the process.
-        /// </summary>
-        ProcessModule MainModule { get; }
-
         /// <summary>
         /// Walks a pointer(base + offsets) and returns the final address.
         /// </summary>
@@ -33,13 +15,6 @@ namespace RFReborn.Windows.Memory
         /// <param name="offsets">Offsets to walk</param>
         /// <returns>The final address of the pointer.</returns>
         IntPtr GetAddress(IntPtr address, int[] offsets);
-
-        /// <summary>
-        /// Converts a relative address to an absolute one.
-        /// </summary>
-        /// <param name="address">Relative address.</param>
-        /// <returns>Absolute address</returns>
-        IntPtr ToAbsolute(IntPtr address);
 
         /// <summary>
         /// Reads a valu of type <typeparamref name="T"/> from the remote process at a specified address.
@@ -131,19 +106,5 @@ namespace RFReborn.Windows.Memory
         /// <param name="bytes">Bytes to write.</param>
         /// <param name="relative">If the address is relative or not.</param>
         void WriteBytes(IntPtr address, byte[] bytes, bool relative = false);
-
-        /// <summary>
-        /// Frees allocated memory(ex with <see cref="Alloc"/>
-        /// </summary>
-        /// <param name="address">Address of the allocated memory to free.</param>
-        void Free(IntPtr address);
-
-        /// <summary>
-        /// Allocates memory in the remote process and returns the address of it.
-        /// </summary>
-        /// <param name="size">Size of memory to allocate.</param>
-        /// <param name="protFlags">Protection flags of the newly allocated memory. Default is <see cref="MemoryProtection.EXECUTE_READWRITE"/></param>
-        /// <returns>The address to the allocated memory.</returns>
-        IntPtr Alloc(int size, MemoryProtection protFlags = MemoryProtection.EXECUTE_READWRITE);
     }
 }
