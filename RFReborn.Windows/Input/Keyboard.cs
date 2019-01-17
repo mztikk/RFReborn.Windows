@@ -213,22 +213,40 @@ namespace RFReborn.Windows.Input
             }
         }
 
+        /// <summary>
+        /// Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState.
+        /// </summary>
+        /// <param name="vKey">The virtual-key code</param>
+        /// <returns>returns <see langword="true"/> if the given key is down, <see langword="false"/> otherwise.</returns>
         public static bool IsKeyDown(VirtualKeyCode vKey)
         {
             return User32.GetAsyncKeyState(vKey);
         }
 
+        /// <summary>
+        /// Sends a keybd_event with the virtual key and either <see cref="KeyEventF.EXTENDEDKEY"/> or <see cref="KeyEventF.NONE"/> as flags.
+        /// </summary>
+        /// <param name="vKey">Key to send down.</param>
         public static void KeyboardEventDown(VirtualKeyCode vKey)
         {
             var extended = IsExtendedKey(vKey);
-            User32.keybd_event(vKey, 0, extended ? KeyEventF.EXTENDEDKEY : KeyEventF.EXTENDEDKEY, 0);
+            User32.keybd_event(vKey, 0, extended ? KeyEventF.EXTENDEDKEY : KeyEventF.NONE, 0);
         }
 
+        /// <summary>
+        /// Sends a keybd_event with the virtual key and <see cref="KeyEventF.KEYUP"/> flags.
+        /// </summary>
+        /// <param name="vKey">Key to send up.</param>
         public static void KeyboardEventUp(VirtualKeyCode vKey)
         {
             User32.keybd_event(vKey, 0, KeyEventF.KEYUP, 0);
         }
 
+        /// <summary>
+        /// Sends a <see cref="KeyboardEventDown(VirtualKeyCode)"/> followed by a <see cref="KeyboardEventUp(VirtualKeyCode)"/> seperated with the given delay.
+        /// </summary>
+        /// <param name="vKey">Key to press</param>
+        /// <param name="delay">Delay between down and up.(Default: 5)</param>
         public static void KeyBoardEventPress(VirtualKeyCode vKey, int delay = 5)
         {
             KeyboardEventDown(vKey);

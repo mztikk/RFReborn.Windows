@@ -157,6 +157,32 @@
                 Delay between each PostMessage call.
             </param>
         </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.IsKeyDown(RFReborn.Windows.Native.Enums.VirtualKeyCode)">
+            <summary>
+            Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState.
+            </summary>
+            <param name="vKey">The virtual-key code</param>
+            <returns>returns <see langword="true"/> if the given key is down, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.KeyboardEventDown(RFReborn.Windows.Native.Enums.VirtualKeyCode)">
+            <summary>
+            Sends a keybd_event with the virtual key and either <see cref="F:RFReborn.Windows.Native.Enums.KeyEventF.EXTENDEDKEY"/> or <see cref="F:RFReborn.Windows.Native.Enums.KeyEventF.NONE"/> as flags.
+            </summary>
+            <param name="vKey">Key to send down.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.KeyboardEventUp(RFReborn.Windows.Native.Enums.VirtualKeyCode)">
+            <summary>
+            Sends a keybd_event with the virtual key and <see cref="F:RFReborn.Windows.Native.Enums.KeyEventF.KEYUP"/> flags.
+            </summary>
+            <param name="vKey">Key to send up.</param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Keyboard.KeyBoardEventPress(RFReborn.Windows.Native.Enums.VirtualKeyCode,System.Int32)">
+            <summary>
+            Sends a <see cref="M:RFReborn.Windows.Input.Keyboard.KeyboardEventDown(RFReborn.Windows.Native.Enums.VirtualKeyCode)"/> followed by a <see cref="M:RFReborn.Windows.Input.Keyboard.KeyboardEventUp(RFReborn.Windows.Native.Enums.VirtualKeyCode)"/> seperated with the given delay.
+            </summary>
+            <param name="vKey">Key to press</param>
+            <param name="delay">Delay between down and up.(Default: 5)</param>
+        </member>
         <member name="T:RFReborn.Windows.Input.Mouse">
             <summary>
             Class to manipulate and generate mouse input.
