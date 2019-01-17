@@ -212,5 +212,28 @@ namespace RFReborn.Windows.Input
                 }
             }
         }
+
+        public static bool IsKeyDown(VirtualKeyCode vKey)
+        {
+            return User32.GetAsyncKeyState(vKey);
+        }
+
+        public static void KeyboardEventDown(VirtualKeyCode vKey)
+        {
+            var extended = IsExtendedKey(vKey);
+            User32.keybd_event(vKey, 0, extended ? KeyEventF.EXTENDEDKEY : KeyEventF.EXTENDEDKEY, 0);
+        }
+
+        public static void KeyboardEventUp(VirtualKeyCode vKey)
+        {
+            User32.keybd_event(vKey, 0, KeyEventF.KEYUP, 0);
+        }
+
+        public static void KeyBoardEventPress(VirtualKeyCode vKey, int delay = 5)
+        {
+            KeyboardEventDown(vKey);
+            Thread.Sleep(delay);
+            KeyboardEventUp(vKey);
+        }
     }
 }

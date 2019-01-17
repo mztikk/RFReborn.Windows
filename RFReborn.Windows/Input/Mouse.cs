@@ -196,5 +196,81 @@ namespace RFReborn.Windows.Input
 
             User32.PostMessage(hWnd, WindowsMessage.WM_RBUTTONUP, 0, lParam);
         }
+
+        /// <summary>
+        ///     Simulates a left mouse button click at the current cursor position.
+        /// </summary>
+        /// <param name="delay">
+        ///     Delay between down and up.
+        /// </param>
+        public static void MouseEventLClick(int delay = 5)
+        {
+            MouseEventLDown();
+            Thread.Sleep(delay);
+            MouseEventLUp();
+        }
+
+        /// <summary>
+        ///     Simulates a left mouse button down at the current cursor position.
+        /// </summary>
+        public static void MouseEventLDown() => User32.mouse_event(MouseEventF.LEFTDOWN, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     Simulates a left mouse button up at the current cursor position.
+        /// </summary>
+        public static void MouseEventLUp() => User32.mouse_event(MouseEventF.LEFTUP, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     Simulates a right mouse button click at the current cursor position.
+        /// </summary>
+        /// <param name="delay">
+        ///     Delay between down and up.
+        /// </param>
+        public static void MouseEventRClick(int delay = 5)
+        {
+            MouseEventRDown();
+            Thread.Sleep(delay);
+            MouseEventRUp();
+        }
+
+        /// <summary>
+        ///     Simulates a right mouse button down at the current cursor position.
+        /// </summary>
+        public static void MouseEventRDown() => User32.mouse_event(MouseEventF.RIGHTDOWN, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     Simulates a right mouse button up at the current cursor position.
+        /// </summary>
+        public static void MouseEventRUp() => User32.mouse_event(MouseEventF.RIGHTUP, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
+        ///     set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the
+        ///     cursor stays within the rectangle.
+        /// </summary>
+        /// <param name="x">
+        ///     The new x-coordinate of the cursor, in screen coordinates.
+        /// </param>
+        /// <param name="y">
+        ///     The new y-coordinate of the cursor, in screen coordinates.
+        /// </param>
+        /// <returns>
+        ///     TRUE if successful; otherwise FALSE.
+        /// </returns>
+        public static bool SetCursorPos(int x, int y) => User32.SetCursorPos(x, y);
+
+        /// <summary>
+        ///     Sets the position of the cursor in physical coordinates.
+        /// </summary>
+        /// <param name="x">
+        ///     The new x-coordinate of the cursor, in physical coordinates.
+        /// </param>
+        /// <param name="y">
+        ///     The new y-coordinate of the cursor, in physical coordinates.
+        /// </param>
+        /// <returns>
+        ///     TRUE if successful; otherwise FALSE.
+        /// </returns>
+        public static bool SetPhysicalCursorPos(int x, int y) => User32.SetPhysicalCursorPos(x, y);
     }
 }

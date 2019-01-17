@@ -196,5 +196,114 @@ namespace RFReborn.Windows.Native
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool PostMessage([In] IntPtr hWnd, [In] WindowsMessage msg, [In] ulong wParam,
             [In] uint lParam);
+
+        /// <summary>
+        ///     The mouse_event function synthesizes mouse motion and button clicks.
+        /// </summary>
+        /// <param name="dwFlags">
+        ///     Controls various aspects of mouse motion and button clicking. This parameter can be certain combinations of
+        ///     <see cref="MouseEventF" />.
+        /// </param>
+        /// <param name="dx">
+        ///     The mouse's absolute position along the x-axis or its amount of motion since the last mouse event was generated,
+        ///     depending on the setting of MOUSEEVENTF_ABSOLUTE. Absolute data is specified as the mouse's actual x-coordinate;
+        ///     relative data is specified as the number of mickeys moved. A mickey is the amount that a mouse has to move for it
+        ///     to report that it has moved.
+        /// </param>
+        /// <param name="dy">
+        ///     The mouse's absolute position along the y-axis or its amount of motion since the last mouse event was generated,
+        ///     depending on the setting of MOUSEEVENTF_ABSOLUTE. Absolute data is specified as the mouse's actual y-coordinate;
+        ///     relative data is specified as the number of mickeys moved.
+        /// </param>
+        /// <param name="dwData">
+        ///     If dwFlags contains MOUSEEVENTF_WHEEL, then dwData specifies the amount of wheel movement. A positive value
+        ///     indicates that the wheel was rotated forward, away from the user; a negative value indicates that the wheel was
+        ///     rotated backward, toward the user. One wheel click is defined as WHEEL_DELTA, which is 120.
+        ///     If dwFlags contains MOUSEEVENTF_HWHEEL, then dwData specifies the amount of wheel movement.A positive value
+        ///     indicates that the wheel was tilted to the right; a negative value indicates that the wheel was tilted to the left.
+        ///     If dwFlags contains MOUSEEVENTF_XDOWN or MOUSEEVENTF_XUP, then dwData specifies which X buttons were pressed or
+        ///     released. This value may be any combination of the following flags.
+        ///     If dwFlags is not MOUSEEVENTF_WHEEL, MOUSEEVENTF_XDOWN, or MOUSEEVENTF_XUP, then dwData should be zero.
+        /// </param>
+        /// <param name="dwExtraInfo">
+        ///     An additional value associated with the mouse event. An application calls GetMessageExtraInfo to obtain this extra
+        ///     information.
+        /// </param>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern void mouse_event([In] MouseEventF dwFlags, [In] int dx, [In] int dy, [In] uint dwData,
+            [In] uint dwExtraInfo);
+
+
+        /// <summary>
+        ///     Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
+        ///     set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the
+        ///     cursor stays within the rectangle.
+        /// </summary>
+        /// <param name="x">
+        ///     The new x-coordinate of the cursor, in screen coordinates.
+        /// </param>
+        /// <param name="y">
+        ///     The new y-coordinate of the cursor, in screen coordinates.
+        /// </param>
+        /// <returns>
+        ///     Returns nonzero if successful or zero otherwise. To get extended error information, call GetLastError.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetCursorPos([In] int x, [In] int y);
+
+        /// <summary>
+        ///     Sets the position of the cursor in physical coordinates.
+        /// </summary>
+        /// <param name="x">
+        ///     The new x-coordinate of the cursor, in physical coordinates.
+        /// </param>
+        /// <param name="y">
+        ///     The new y-coordinate of the cursor, in physical coordinates.
+        /// </param>
+        /// <returns>
+        ///     TRUE if successful; otherwise FALSE.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetPhysicalCursorPos([In] int x, [In] int y);
+
+        /// <summary>
+        /// Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState
+        /// </summary>
+        /// <param name="vKey">
+        /// The virtual-key code. For more information, see Virtual Key Codes.
+        /// You can use left- and right-distinguishing constants to specify certain keys.See the Remarks section for further information.
+        /// </param>
+        /// <returns>
+        /// If the function succeeds, the return value specifies whether the key was pressed since the last call to GetAsyncKeyState, and whether the key is currently up or down.
+        /// If the most significant bit is set, the key is down, and if the least significant bit is set, the key was pressed after the previous call to GetAsyncKeyState.
+        /// However, you should not rely on this last behavior; for more information, see the Remarks.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetAsyncKeyState([In] VirtualKeyCode vKey);
+
+        /// <summary>
+        ///     Synthesizes a keystroke. The system can use such a synthesized keystroke to generate a WM_KEYUP or WM_KEYDOWN
+        ///     message. The keyboard driver's interrupt handler calls the keybd_event function.
+        /// </summary>
+        /// <param name="bVk">
+        ///     A virtual-key code. The code must be a value in the range 1 to 254. For a complete list,
+        ///     <see cref="VirtualKeyCode" />.
+        /// </param>
+        /// <param name="bScan">
+        ///     A hardware scan code for the key.
+        /// </param>
+        /// <param name="dwFlags">
+        ///     Controls various aspects of function operation. This parameter can be one or more of the following values.
+        ///     <see cref="KeyEventF" />
+        /// </param>
+        /// <param name="dwExtraInfo">
+        ///     An additional value associated with the key stroke.
+        /// </param>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern void keybd_event([In] VirtualKeyCode bVk, [In] byte bScan, [In] KeyEventF dwFlags,
+            [In] uint dwExtraInfo);
     }
 }

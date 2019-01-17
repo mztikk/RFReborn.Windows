@@ -289,6 +289,72 @@
                 y-coordinate
             </param>
         </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventLClick(System.Int32)">
+            <summary>
+                Simulates a left mouse button click at the current cursor position.
+            </summary>
+            <param name="delay">
+                Delay between down and up.
+            </param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventLDown">
+            <summary>
+                Simulates a left mouse button down at the current cursor position.
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventLUp">
+            <summary>
+                Simulates a left mouse button up at the current cursor position.
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventRClick(System.Int32)">
+            <summary>
+                Simulates a right mouse button click at the current cursor position.
+            </summary>
+            <param name="delay">
+                Delay between down and up.
+            </param>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventRDown">
+            <summary>
+                Simulates a right mouse button down at the current cursor position.
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.MouseEventRUp">
+            <summary>
+                Simulates a right mouse button up at the current cursor position.
+            </summary>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.SetCursorPos(System.Int32,System.Int32)">
+            <summary>
+                Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
+                set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the
+                cursor stays within the rectangle.
+            </summary>
+            <param name="x">
+                The new x-coordinate of the cursor, in screen coordinates.
+            </param>
+            <param name="y">
+                The new y-coordinate of the cursor, in screen coordinates.
+            </param>
+            <returns>
+                TRUE if successful; otherwise FALSE.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Input.Mouse.SetPhysicalCursorPos(System.Int32,System.Int32)">
+            <summary>
+                Sets the position of the cursor in physical coordinates.
+            </summary>
+            <param name="x">
+                The new x-coordinate of the cursor, in physical coordinates.
+            </param>
+            <param name="y">
+                The new y-coordinate of the cursor, in physical coordinates.
+            </param>
+            <returns>
+                TRUE if successful; otherwise FALSE.
+            </returns>
+        </member>
         <member name="T:RFReborn.Windows.Memory.IOpenProcess">
             <summary>
             Provides methods to interact with an opened remote process.
@@ -598,6 +664,37 @@
             Releases all resources used.
             </summary>
         </member>
+        <member name="T:RFReborn.Windows.Native.Enums.KeyEventF">
+            <summary>
+                Controls various aspects of function operation.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.KeyEventF.NONE">
+            <summary>
+                No KeyEvent (used for down event).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.KeyEventF.EXTENDEDKEY">
+            <summary>
+                If specified, the scan code was preceded by a prefix byte that has the value 0xE0 (224).
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.KeyEventF.KEYUP">
+            <summary>
+                If specified, the key is being released. If not specified, the key is being pressed.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.KeyEventF.SCANCODE">
+            <summary>
+                If specified, wScan identifies the key and wVk is ignored.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.KeyEventF.UNICODE">
+            <summary>
+                If specified, the system synthesizes a VK_PACKET keystroke. The wVk parameter must be zero. This flag can only be
+                combined with the KEYUP flag. For more information, see the Remarks section.
+            </summary>
+        </member>
         <member name="T:RFReborn.Windows.Native.Enums.MemoryAllocation">
             <summary>
             The type of memory allocation.
@@ -863,6 +960,86 @@
         <member name="F:RFReborn.Windows.Native.Enums.MemoryType.Image">
             <summary>
             Indicates that the memory pages within the region are mapped into the view of an image section.
+            </summary>
+        </member>
+        <member name="T:RFReborn.Windows.Native.Enums.MouseEventF">
+            <summary>
+                Controls various aspects of mouse motion and button clicking.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.MOVE">
+            <summary>
+                Movement occurred.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.LEFTDOWN">
+            <summary>
+                The left button was pressed.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.LEFTUP">
+            <summary>
+                The left button was released.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.RIGHTDOWN">
+            <summary>
+                The right button was pressed.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.RIGHTUP">
+            <summary>
+                The right button was released.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.MIDDLEDOWN">
+            <summary>
+                The middle button was pressed.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.MIDDLEUP">
+            <summary>
+                The middle button was released.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.XDOWN">
+            <summary>
+                An X button was pressed.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.XUP">
+            <summary>
+                An X button was released.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.WHEEL">
+            <summary>
+                The wheel was moved, if the mouse has a wheel. The amount of movement is specified in mouseData.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.HWHEEL">
+            <summary>
+                The wheel was moved horizontally, if the mouse has a wheel. The amount of movement is specified in mouseData.
+                Windows XP/2000: This value is not supported.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.MOVE_NOCOALESCE">
+            <summary>
+                The WM_MOUSEMOVE messages will not be coalesced. The default behavior is to coalesce WM_MOUSEMOVE messages.
+                Windows XP/2000: This value is not supported.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.VIRTUALDESK">
+            <summary>
+                Maps coordinates to the entire desktop. Must be used with ABSOLUTE.
+            </summary>
+        </member>
+        <member name="F:RFReborn.Windows.Native.Enums.MouseEventF.ABSOLUTE">
+            <summary>
+                The dx and dy members contain normalized absolute coordinates. If the flag is not set, dx and dy contain relative
+                data (the change in position since the last reported position). This flag can be set, or not set, regardless of
+                what kind of mouse or other pointing device, if any, is connected to the system. For further information about
+                relative mouse motion, see the following Remarks section.
             </summary>
         </member>
         <member name="T:RFReborn.Windows.Native.Enums.MouseKey">
@@ -2457,6 +2634,104 @@
                 If the function fails, the return value is zero.To get extended error information, call GetLastError.GetLastError
                 returns ERROR_NOT_ENOUGH_QUOTA when the limit is hit.
             </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.User32.mouse_event(RFReborn.Windows.Native.Enums.MouseEventF,System.Int32,System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+                The mouse_event function synthesizes mouse motion and button clicks.
+            </summary>
+            <param name="dwFlags">
+                Controls various aspects of mouse motion and button clicking. This parameter can be certain combinations of
+                <see cref="T:RFReborn.Windows.Native.Enums.MouseEventF" />.
+            </param>
+            <param name="dx">
+                The mouse's absolute position along the x-axis or its amount of motion since the last mouse event was generated,
+                depending on the setting of MOUSEEVENTF_ABSOLUTE. Absolute data is specified as the mouse's actual x-coordinate;
+                relative data is specified as the number of mickeys moved. A mickey is the amount that a mouse has to move for it
+                to report that it has moved.
+            </param>
+            <param name="dy">
+                The mouse's absolute position along the y-axis or its amount of motion since the last mouse event was generated,
+                depending on the setting of MOUSEEVENTF_ABSOLUTE. Absolute data is specified as the mouse's actual y-coordinate;
+                relative data is specified as the number of mickeys moved.
+            </param>
+            <param name="dwData">
+                If dwFlags contains MOUSEEVENTF_WHEEL, then dwData specifies the amount of wheel movement. A positive value
+                indicates that the wheel was rotated forward, away from the user; a negative value indicates that the wheel was
+                rotated backward, toward the user. One wheel click is defined as WHEEL_DELTA, which is 120.
+                If dwFlags contains MOUSEEVENTF_HWHEEL, then dwData specifies the amount of wheel movement.A positive value
+                indicates that the wheel was tilted to the right; a negative value indicates that the wheel was tilted to the left.
+                If dwFlags contains MOUSEEVENTF_XDOWN or MOUSEEVENTF_XUP, then dwData specifies which X buttons were pressed or
+                released. This value may be any combination of the following flags.
+                If dwFlags is not MOUSEEVENTF_WHEEL, MOUSEEVENTF_XDOWN, or MOUSEEVENTF_XUP, then dwData should be zero.
+            </param>
+            <param name="dwExtraInfo">
+                An additional value associated with the mouse event. An application calls GetMessageExtraInfo to obtain this extra
+                information.
+            </param>
+        </member>
+        <member name="M:RFReborn.Windows.Native.User32.SetCursorPos(System.Int32,System.Int32)">
+            <summary>
+                Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
+                set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the
+                cursor stays within the rectangle.
+            </summary>
+            <param name="x">
+                The new x-coordinate of the cursor, in screen coordinates.
+            </param>
+            <param name="y">
+                The new y-coordinate of the cursor, in screen coordinates.
+            </param>
+            <returns>
+                Returns nonzero if successful or zero otherwise. To get extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.User32.SetPhysicalCursorPos(System.Int32,System.Int32)">
+            <summary>
+                Sets the position of the cursor in physical coordinates.
+            </summary>
+            <param name="x">
+                The new x-coordinate of the cursor, in physical coordinates.
+            </param>
+            <param name="y">
+                The new y-coordinate of the cursor, in physical coordinates.
+            </param>
+            <returns>
+                TRUE if successful; otherwise FALSE.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.User32.GetAsyncKeyState(RFReborn.Windows.Native.Enums.VirtualKeyCode)">
+            <summary>
+            Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState
+            </summary>
+            <param name="vKey">
+            The virtual-key code. For more information, see Virtual Key Codes.
+            You can use left- and right-distinguishing constants to specify certain keys.See the Remarks section for further information.
+            </param>
+            <returns>
+            If the function succeeds, the return value specifies whether the key was pressed since the last call to GetAsyncKeyState, and whether the key is currently up or down.
+            If the most significant bit is set, the key is down, and if the least significant bit is set, the key was pressed after the previous call to GetAsyncKeyState.
+            However, you should not rely on this last behavior; for more information, see the Remarks.
+            </returns>
+        </member>
+        <member name="M:RFReborn.Windows.Native.User32.keybd_event(RFReborn.Windows.Native.Enums.VirtualKeyCode,System.Byte,RFReborn.Windows.Native.Enums.KeyEventF,System.UInt32)">
+            <summary>
+                Synthesizes a keystroke. The system can use such a synthesized keystroke to generate a WM_KEYUP or WM_KEYDOWN
+                message. The keyboard driver's interrupt handler calls the keybd_event function.
+            </summary>
+            <param name="bVk">
+                A virtual-key code. The code must be a value in the range 1 to 254. For a complete list,
+                <see cref="T:RFReborn.Windows.Native.Enums.VirtualKeyCode" />.
+            </param>
+            <param name="bScan">
+                A hardware scan code for the key.
+            </param>
+            <param name="dwFlags">
+                Controls various aspects of function operation. This parameter can be one or more of the following values.
+                <see cref="T:RFReborn.Windows.Native.Enums.KeyEventF" />
+            </param>
+            <param name="dwExtraInfo">
+                An additional value associated with the key stroke.
+            </param>
         </member>
         <member name="T:RFReborn.Windows.ProcessHelpers">
             <summary>
