@@ -161,7 +161,7 @@ namespace RFReborn.Windows.Memory
 
             fixed (void* vp = values)
             {
-                WriteBytes(address, vp, values.Length * sizeof(T), relative);
+                WriteBytes(address, vp, values.Length * size, relative);
             }
         }
 
