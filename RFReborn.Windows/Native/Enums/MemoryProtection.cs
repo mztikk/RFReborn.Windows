@@ -113,13 +113,15 @@ namespace RFReborn.Windows.Native.Enums
         /// </summary>
         TARGETS_INVALID = 0x40000000,
 
-        /// <summary>
-        ///     Pages in the region will not have their CFG information updated while the protection changes for VirtualProtect.
-        ///     For example, if the pages in the region was allocated using TARGETS_INVALID, then the invalid information will be
-        ///     maintained while the page protection changes. This flag is only valid when the protection changes to an executable
-        ///     type like EXECUTE, EXECUTE_READ, EXECUTE_READWRITE and EXECUTE_WRITECOPY. The default behavior for VirtualProtect
-        ///     protection change to executable is to mark all locations as valid call targets for CFG.
-        /// </summary>
+#pragma warning disable RCS1234 // Duplicate enum value.
+                               /// <summary>
+                               ///     Pages in the region will not have their CFG information updated while the protection changes for VirtualProtect.
+                               ///     For example, if the pages in the region was allocated using TARGETS_INVALID, then the invalid information will be
+                               ///     maintained while the page protection changes. This flag is only valid when the protection changes to an executable
+                               ///     type like EXECUTE, EXECUTE_READ, EXECUTE_READWRITE and EXECUTE_WRITECOPY. The default behavior for VirtualProtect
+                               ///     protection change to executable is to mark all locations as valid call targets for CFG.
+                               /// </summary>
         TARGETS_NO_UPDATE = 0x40000000
+#pragma warning restore RCS1234 // Duplicate enum value.
     }
 }

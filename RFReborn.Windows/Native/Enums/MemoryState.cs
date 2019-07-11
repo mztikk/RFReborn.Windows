@@ -6,7 +6,9 @@ namespace RFReborn.Windows.Native.Enums
     /// Memory-state options list.
     /// </summary>
     [Flags]
+#pragma warning disable RCS1135 // Declare enum member with zero value (when enum has FlagsAttribute).
     public enum MemoryState
+#pragma warning restore RCS1135 // Declare enum member with zero value (when enum has FlagsAttribute).
     {
         /// <summary>
         /// Indicates committed pages for which physical storage has been allocated, either in memory or in the paging file on disk.

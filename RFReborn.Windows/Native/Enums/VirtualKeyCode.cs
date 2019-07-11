@@ -96,10 +96,12 @@
         /// </summary>
         HANGEUL = 0x15,
 
-        /// <summary>
-        ///     IME Hangul mode
-        /// </summary>
+#pragma warning disable RCS1234 // Duplicate enum value.
+                               /// <summary>
+                               ///     IME Hangul mode
+                               /// </summary>
         HANGUL = 0x15,
+#pragma warning restore RCS1234 // Duplicate enum value.
 
         // 0x16 : Undefined
 
@@ -118,10 +120,12 @@
         /// </summary>
         HANJA = 0x19,
 
-        /// <summary>
-        ///     IME Kanji mode
-        /// </summary>
+#pragma warning disable RCS1234 // Duplicate enum value.
+                               /// <summary>
+                               ///     IME Kanji mode
+                               /// </summary>
         KANJI = 0x19,
+#pragma warning restore RCS1234 // Duplicate enum value.
 
         // 0x1A : Undefined
 
