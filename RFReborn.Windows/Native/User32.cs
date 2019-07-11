@@ -233,7 +233,6 @@ namespace RFReborn.Windows.Native
         public static extern void mouse_event([In] MouseEventF dwFlags, [In] int dx, [In] int dy, [In] uint dwData,
             [In] uint dwExtraInfo);
 
-
         /// <summary>
         ///     Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
         ///     set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the

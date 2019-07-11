@@ -204,7 +204,6 @@ namespace RFReborn.Windows.Native
         public static extern bool ReadProcessMemory([In] Handle hProcess, [In] IntPtr lpBaseAddress,
             [Out] byte[] lpBuffer, [In] int nSize, [Out] out int lpNumberOfBytesRead);
 
-
         /// <summary>
         ///     Writes data to an area of memory in a specified process. The entire area to be written to must be accessible or the
         ///     operation fails.
