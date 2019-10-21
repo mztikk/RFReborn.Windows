@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using RFReborn.AoB;
 using RFReborn.Windows.Memory;
+using RFReborn.Windows.Memory.Exceptions;
 
 namespace RFReborn.Windows.Extensions
 {
@@ -35,7 +36,15 @@ namespace RFReborn.Windows.Extensions
         /// <returns>The address of the <see cref="Signature"/> if it is found; -1 otherwise</returns>
         public static long FindSignature(this IRemoteMemory remoteMem, Signature signature, ProcessModule processModule)
         {
-            var dumpedModule = remoteMem.ReadBytes(processModule.BaseAddress, processModule.ModuleMemorySize);
+            byte[] dumpedModule;
+            try
+            {
+                dumpedModule = remoteMem.ReadBytes(processModule.BaseAddress, processModule.ModuleMemorySize);
+            }
+            catch (ReadMemoryException)
+            {
+                return -1;
+            }
             var found = Scanner.FindSignature(dumpedModule, signature);
             if (found == -1)
             {

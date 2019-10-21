@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using RFReborn.Windows.Memory.Exceptions;
 using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
 
@@ -239,7 +240,8 @@ namespace RFReborn.Windows.Memory
                 }
             }
 
-            throw new Exception($"Couldn't read {size} bytes from 0x{address.ToString("X")}.");
+            throw new ReadMemoryException(address, size);
+            //throw new Exception($"Couldn't read {size} bytes from 0x{address.ToString("X")}.");
         }
 
         private static void WriteBytes(Handle procHandle, IntPtr address, byte[] bytes)
@@ -253,7 +255,8 @@ namespace RFReborn.Windows.Memory
 
             if (!result || numBytesWritten != bytes.Length)
             {
-                throw new Exception($"Couldn't write {bytes.Length} bytes to 0x{address.ToString("X")}");
+                throw new WriteMemoryException(address, bytes.Length);
+                //throw new Exception($"Couldn't write {bytes.Length} bytes to 0x{address.ToString("X")}");
             }
         }
 
@@ -268,7 +271,8 @@ namespace RFReborn.Windows.Memory
 
             if (!result || numBytesWritten != numOfBytesToWrite)
             {
-                throw new Exception($"Couldn't write {numOfBytesToWrite} bytes to 0x{address.ToString("X")}");
+                throw new WriteMemoryException(address, numOfBytesToWrite);
+                //throw new Exception($"Couldn't write {numOfBytesToWrite} bytes to 0x{address.ToString("X")}");
             }
         }
 
@@ -362,7 +366,7 @@ namespace RFReborn.Windows.Memory
             ReleaseUnmanagedResources();
             if (disposing)
             {
-                NativeProcess?.Dispose();
+                //NativeProcess?.Dispose();
                 ProcessHandle?.Dispose();
             }
         }
