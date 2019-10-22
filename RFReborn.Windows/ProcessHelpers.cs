@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using RFReborn.Windows.Native;
@@ -89,9 +90,17 @@ namespace RFReborn.Windows
 
             try
             {
-                Process.GetProcessById(process.Id);
+                var proc = Process.GetProcessById(process.Id);
+                if (proc?.HasExited != false)
+                {
+                    return false;
+                }
             }
             catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (Win32Exception)
             {
                 return false;
             }
