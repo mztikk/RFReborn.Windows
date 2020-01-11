@@ -306,7 +306,7 @@ namespace RFReborn.Windows.Memory
                 address = Read<IntPtr>(address + offsets[i]);
             }
 
-            return address + offsets[offsets.Length - 1];
+            return address + offsets[^1];
         }
 
         /// <summary>
@@ -350,25 +350,46 @@ namespace RFReborn.Windows.Memory
             throw new Exception($"Couldn't free memory at 0x{address.ToString("X")}.");
         }
 
-        private void ReleaseUnmanagedResources() => ProcessHandle?.Close();
-
+        #region IDisposable Support
         /// <summary>
-        /// Releases all resources used.
+        /// If this object has been disposed
         /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        public bool IsDisposed { get; private set; } = false;
 
+        /// <inheritdoc />
         protected virtual void Dispose(bool disposing)
         {
-            ReleaseUnmanagedResources();
-            if (disposing)
+            if (!IsDisposed)
             {
-                //NativeProcess?.Dispose();
-                ProcessHandle?.Dispose();
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    ProcessHandle?.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                IsDisposed = true;
             }
         }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~RemoteMemory()
+        // {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }
