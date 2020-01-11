@@ -221,6 +221,16 @@ namespace RFReborn.Windows.Input
         public static void MouseEventLUp() => User32.mouse_event(MouseEventF.LEFTUP, 0, 0, 0, 0);
 
         /// <summary>
+        ///     Simulates a left mouse button down at the current cursor position.
+        /// </summary>
+        public static void MouseEventLDown(int x, int y) => User32.mouse_event(MouseEventF.LEFTDOWN, x, y, 0, 0);
+
+        /// <summary>
+        ///     Simulates a left mouse button up at the current cursor position.
+        /// </summary>
+        public static void MouseEventLUp(int x, int y) => User32.mouse_event(MouseEventF.LEFTUP, x, y, 0, 0);
+
+        /// <summary>
         ///     Simulates a right mouse button click at the current cursor position.
         /// </summary>
         /// <param name="delay">
@@ -242,6 +252,16 @@ namespace RFReborn.Windows.Input
         ///     Simulates a right mouse button up at the current cursor position.
         /// </summary>
         public static void MouseEventRUp() => User32.mouse_event(MouseEventF.RIGHTUP, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     Simulates a right mouse button down at the current cursor position.
+        /// </summary>
+        public static void MouseEventRDown(int x, int y) => User32.mouse_event(MouseEventF.RIGHTDOWN, x, y, 0, 0);
+
+        /// <summary>
+        ///     Simulates a right mouse button up at the current cursor position.
+        /// </summary>
+        public static void MouseEventRUp(int x, int y) => User32.mouse_event(MouseEventF.RIGHTUP, x, y, 0, 0);
 
         /// <summary>
         ///     Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
