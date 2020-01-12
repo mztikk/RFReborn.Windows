@@ -3,13 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <Version>1.4</Version>
+    <AssemblyVersion>1.4.0.0</AssemblyVersion>
+    
     <PackageProjectUrl>https://github.com/mztikk/RFReborn.Windows</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mztikk/RFReborn.Windows</RepositoryUrl>
     <Authors>mztikk</Authors>
-    <PackageLicenseUrl>https://github.com/mztikk/RFReborn.Windows/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -19,8 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RFReborn" Version="1.1.4" />
-    <PackageReference Include="System.Management" Version="4.6.0" />
+    <PackageReference Include="RFReborn" Version="1.4.1" />
+    <PackageReference Include="System.Management" Version="4.7.0" />
   </ItemGroup>
 
 </Project>
