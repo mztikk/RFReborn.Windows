@@ -29,6 +29,6 @@ namespace RFReborn.Windows.Memory.Exceptions
         {
         }
 
-        private static string GetMessageFromPtrAndSize(IntPtr address, int size) => $"Couldn't read {size} bytes from 0x{address.ToString("X")}.";
+        private static string GetMessageFromPtrAndSize(IntPtr address, int size) => $"Couldn't read {size} bytes from 0x{address:X}.";
     }
 }
