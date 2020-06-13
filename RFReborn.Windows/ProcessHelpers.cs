@@ -72,7 +72,7 @@ namespace RFReborn.Windows
         /// <returns><see langword="true"/> if 64bit, otherwise <see langword="false"/>.</returns>
         public static bool Is64Bit(Process proc)
         {
-            Kernel32.IsWow64Process(proc.Handle, out var iswow64);
+            Kernel32.IsWow64Process(proc.Handle, out bool iswow64);
             return !iswow64 && Environment.Is64BitOperatingSystem;
         }
 
@@ -90,7 +90,7 @@ namespace RFReborn.Windows
 
             try
             {
-                var proc = Process.GetProcessById(process.Id);
+                Process proc = Process.GetProcessById(process.Id);
                 if (proc?.HasExited != false)
                 {
                     return false;

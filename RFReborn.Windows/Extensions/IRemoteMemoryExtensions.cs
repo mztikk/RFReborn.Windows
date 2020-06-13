@@ -45,7 +45,8 @@ namespace RFReborn.Windows.Extensions
             {
                 return -1;
             }
-            var found = Scanner.FindSignature(dumpedModule, signature);
+
+            long found = Scanner.FindSignature(dumpedModule, signature);
             if (found == -1)
             {
                 return -1;

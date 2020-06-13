@@ -16,12 +16,12 @@ namespace RFReborn.Windows.Extensions
         /// <returns>String of the commandline arguments if successfull, <see cref="string.Empty"/> otherwise.</returns>
         public static string GetCommandLine(this Process proc)
         {
-            using (var searcher = new ManagementObjectSearcher(
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(
                           $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {proc.Id}"))
             {
                 foreach (ManagementBaseObject item in searcher.Get())
                 {
-                    var cmd = item["CommandLine"];
+                    object cmd = item["CommandLine"];
                     if (cmd == null)
                     {
                         continue;

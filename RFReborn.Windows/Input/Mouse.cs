@@ -28,7 +28,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageLButtonClick(IntPtr hWnd, int xPos, int yPos, int delay = 5)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_LBUTTONDOWN, (uint)MouseKey.MK_LBUTTON, lParam);
 
@@ -51,7 +51,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageLButtonDown(IntPtr hWnd, int xPos, int yPos)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_LBUTTONDOWN, (uint)MouseKey.MK_LBUTTON, lParam);
         }
@@ -70,7 +70,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageLButtonUp(IntPtr hWnd, int xPos, int yPos)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_LBUTTONUP, 0, lParam);
         }
@@ -93,7 +93,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageLButtonDoubleClick(IntPtr hWnd, int xPos, int yPos, int delay = 5)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_LBUTTONDOWN, (uint)MouseKey.MK_LBUTTON, lParam);
             Thread.Sleep(delay);
@@ -121,7 +121,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageRButtonClick(IntPtr hWnd, int xPos, int yPos, int delay = 5)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_RBUTTONDOWN, (uint)MouseKey.MK_RBUTTON, lParam);
 
@@ -148,7 +148,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageRButtonDoubleClick(IntPtr hWnd, int xPos, int yPos, int delay = 5)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_RBUTTONDOWN, (uint)MouseKey.MK_LBUTTON, lParam);
             Thread.Sleep(delay);
@@ -173,7 +173,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageRButtonDown(IntPtr hWnd, int xPos, int yPos)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_RBUTTONDOWN, (uint)MouseKey.MK_RBUTTON, lParam);
         }
@@ -192,7 +192,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageRButtonUp(IntPtr hWnd, int xPos, int yPos)
         {
-            var lParam = (uint)((yPos << 16) | xPos);
+            uint lParam = (uint)((yPos << 16) | xPos);
 
             User32.PostMessage(hWnd, WindowsMessage.WM_RBUTTONUP, 0, lParam);
         }

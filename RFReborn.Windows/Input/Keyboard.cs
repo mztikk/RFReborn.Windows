@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading;
-using RFReborn.Windows.Native;
+﻿using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
+using System;
+using System.Threading;
 
 namespace RFReborn.Windows.Input
 {
@@ -47,9 +47,7 @@ namespace RFReborn.Windows.Input
         ///     (CTRL+PAUSE) key; the PRINT SCRN key; and the divide (/) and ENTER keys in the numeric keypad.
         ///     See http://msdn.microsoft.com/en-us/library/ms646267(v=vs.85).aspx Section "Extended-Key Flag"
         /// </remarks>
-        public static bool IsExtendedKey(VirtualKeyCode keyCode)
-        {
-            return keyCode == VirtualKeyCode.MENU || keyCode == VirtualKeyCode.LMENU
+        public static bool IsExtendedKey(VirtualKeyCode keyCode) => keyCode == VirtualKeyCode.MENU || keyCode == VirtualKeyCode.LMENU
                    || keyCode == VirtualKeyCode.RMENU || keyCode == VirtualKeyCode.CONTROL
                    || keyCode == VirtualKeyCode.RCONTROL || keyCode == VirtualKeyCode.INSERT
                    || keyCode == VirtualKeyCode.DELETE || keyCode == VirtualKeyCode.HOME
@@ -58,7 +56,6 @@ namespace RFReborn.Windows.Input
                    || keyCode == VirtualKeyCode.DOWN || keyCode == VirtualKeyCode.NUMLOCK
                    || keyCode == VirtualKeyCode.CANCEL || keyCode == VirtualKeyCode.SNAPSHOT
                    || keyCode == VirtualKeyCode.DIVIDE;
-        }
 
         /// <summary>
         ///     Translates a char to a virtual key code and modifier.
@@ -69,9 +66,9 @@ namespace RFReborn.Windows.Input
         /// <returns>Virtual key code of the car and the modifier needed.</returns>
         public static (VirtualKeyCode, Modifier) VkKeyScan(char ch)
         {
-            var data = User32.VkKeyScan(ch);
-            var vkc = (VirtualKeyCode)(data & 0x2ff);
-            var b = data >> 8;
+            short data = User32.VkKeyScan(ch);
+            VirtualKeyCode vkc = (VirtualKeyCode)(data & 0x2ff);
+            int b = data >> 8;
             Modifier mod = Modifier.None;
             if ((b & 1) != 0)
             {
@@ -100,9 +97,9 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageKeyDown(IntPtr hWnd, VirtualKeyCode vkCode)
         {
-            var scanCode = User32.MapVirtualKey((uint)vkCode, 0);
+            uint scanCode = User32.MapVirtualKey((uint)vkCode, 0);
 
-            var lParam = 0x00000001 | (scanCode << 16);
+            uint lParam = 0x00000001 | (scanCode << 16);
             if (IsExtendedKey(vkCode))
             {
                 lParam |= 0x01000000;
@@ -122,8 +119,8 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageKeyUp(IntPtr hWnd, VirtualKeyCode vkCode)
         {
-            var scanCode = User32.MapVirtualKey((uint)vkCode, 0);
-            var lParam = 0xC0000001 | (scanCode << 16);
+            uint scanCode = User32.MapVirtualKey((uint)vkCode, 0);
+            uint lParam = 0xC0000001 | (scanCode << 16);
             if (IsExtendedKey(vkCode))
             {
                 lParam |= 0x01000000;
@@ -147,9 +144,9 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageKeyPress(IntPtr hWnd, VirtualKeyCode vkCode, int delay = 5)
         {
-            var scanCode = User32.MapVirtualKey((uint)vkCode, 0);
+            uint scanCode = User32.MapVirtualKey((uint)vkCode, 0);
 
-            var lParam = 0x00000001 | (scanCode << 16);
+            uint lParam = 0x00000001 | (scanCode << 16);
             if (IsExtendedKey(vkCode))
             {
                 lParam |= 0x01000000;
@@ -175,7 +172,7 @@ namespace RFReborn.Windows.Input
         /// </param>
         public static void PostMessageString(IntPtr hWnd, string textToSend, int delay = 5)
         {
-            for (var i = 0; i < textToSend.Length; i++)
+            for (int i = 0; i < textToSend.Length; i++)
             {
                 (VirtualKeyCode key, Modifier mod) = VkKeyScan(textToSend[i]);
                 switch (mod)
@@ -218,10 +215,7 @@ namespace RFReborn.Windows.Input
         /// </summary>
         /// <param name="vKey">The virtual-key code</param>
         /// <returns>returns <see langword="true"/> if the given key is down, <see langword="false"/> otherwise.</returns>
-        public static bool IsKeyDown(VirtualKeyCode vKey)
-        {
-            return User32.GetAsyncKeyState(vKey);
-        }
+        public static bool IsKeyDown(VirtualKeyCode vKey) => User32.GetAsyncKeyState(vKey);
 
         /// <summary>
         /// Sends a keybd_event with the virtual key and either <see cref="KeyEventF.EXTENDEDKEY"/> or <see cref="KeyEventF.NONE"/> as flags.
@@ -229,7 +223,7 @@ namespace RFReborn.Windows.Input
         /// <param name="vKey">Key to send down.</param>
         public static void KeyboardEventDown(VirtualKeyCode vKey)
         {
-            var extended = IsExtendedKey(vKey);
+            bool extended = IsExtendedKey(vKey);
             User32.keybd_event(vKey, 0, extended ? KeyEventF.EXTENDEDKEY : KeyEventF.NONE, 0);
         }
 
@@ -237,10 +231,7 @@ namespace RFReborn.Windows.Input
         /// Sends a keybd_event with the virtual key and <see cref="KeyEventF.KEYUP"/> flags.
         /// </summary>
         /// <param name="vKey">Key to send up.</param>
-        public static void KeyboardEventUp(VirtualKeyCode vKey)
-        {
-            User32.keybd_event(vKey, 0, KeyEventF.KEYUP, 0);
-        }
+        public static void KeyboardEventUp(VirtualKeyCode vKey) => User32.keybd_event(vKey, 0, KeyEventF.KEYUP, 0);
 
         /// <summary>
         /// Sends a <see cref="KeyboardEventDown(VirtualKeyCode)"/> followed by a <see cref="KeyboardEventUp(VirtualKeyCode)"/> seperated with the given delay.

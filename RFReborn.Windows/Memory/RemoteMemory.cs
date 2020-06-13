@@ -78,7 +78,7 @@ namespace RFReborn.Windows.Memory
                 size = sizeof(T);
             }
 
-            var bytes = ReadBytes(address, size, relative);
+            byte[] bytes = ReadBytes(address, size, relative);
             fixed (void* bp = bytes)
             {
                 return *(T*)bp;
@@ -107,8 +107,8 @@ namespace RFReborn.Windows.Memory
 
             size *= count;
 
-            var bytes = ReadBytes(address, size, relative);
-            var result = new T[count];
+            byte[] bytes = ReadBytes(address, size, relative);
+            T[] result = new T[count];
 
             fixed (void* bp = bytes, rp = result)
             {
@@ -176,9 +176,9 @@ namespace RFReborn.Windows.Memory
         /// <returns>String at the address.</returns>
         public string ReadString(IntPtr address, Encoding encoding, int maxLength = 512, bool relative = false)
         {
-            var bytes = ReadBytes(address, maxLength, relative);
-            var data = encoding.GetString(bytes);
-            var eosPos = data.IndexOf('\0');
+            byte[] bytes = ReadBytes(address, maxLength, relative);
+            string data = encoding.GetString(bytes);
+            int eosPos = data.IndexOf('\0');
 
             return eosPos == -1 ? data : data.Substring(0, eosPos);
         }
@@ -232,8 +232,8 @@ namespace RFReborn.Windows.Memory
         {
             if (!procHandle.IsInvalid && !procHandle.IsClosed && address != IntPtr.Zero)
             {
-                var buffer = new byte[size];
-                if (Kernel32.ReadProcessMemory(procHandle, address, buffer, size, out var numBytesRead)
+                byte[] buffer = new byte[size];
+                if (Kernel32.ReadProcessMemory(procHandle, address, buffer, size, out int numBytesRead)
                     && size == numBytesRead)
                 {
                     return buffer;
@@ -251,7 +251,7 @@ namespace RFReborn.Windows.Memory
                 throw new ArgumentException("Handle invalid/closed or address is zero");
             }
 
-            var result = Kernel32.WriteProcessMemory(procHandle, address, bytes, bytes.Length, out var numBytesWritten);
+            bool result = Kernel32.WriteProcessMemory(procHandle, address, bytes, bytes.Length, out int numBytesWritten);
 
             if (!result || numBytesWritten != bytes.Length)
             {
@@ -267,7 +267,7 @@ namespace RFReborn.Windows.Memory
                 throw new ArgumentException("Handle invalid/closed or address is zero");
             }
 
-            var result = Kernel32.WriteProcessMemory(procHandle, address, bytes, numOfBytesToWrite, out var numBytesWritten);
+            bool result = Kernel32.WriteProcessMemory(procHandle, address, bytes, numOfBytesToWrite, out int numBytesWritten);
 
             if (!result || numBytesWritten != numOfBytesToWrite)
             {
@@ -301,7 +301,7 @@ namespace RFReborn.Windows.Memory
         public IntPtr GetAddress(IntPtr address, int[] offsets)
         {
             address = Read<IntPtr>(address);
-            for (var i = 0; i < offsets.Length - 1; i++)
+            for (int i = 0; i < offsets.Length - 1; i++)
             {
                 address = Read<IntPtr>(address + offsets[i]);
             }
