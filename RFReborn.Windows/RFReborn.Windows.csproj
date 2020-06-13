@@ -7,8 +7,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
-    <Version>1.4</Version>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
+    <Version>1.5.1</Version>
+    <AssemblyVersion>1.5.1.0</AssemblyVersion>
     
     <PackageProjectUrl>https://github.com/mztikk/RFReborn.Windows</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mztikk/RFReborn.Windows</RepositoryUrl>
