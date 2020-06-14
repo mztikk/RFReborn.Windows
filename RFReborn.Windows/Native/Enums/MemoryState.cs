@@ -16,13 +16,13 @@ namespace RFReborn.Windows.Native.Enums
         Commit = 0x1000,
 
         /// <summary>
-        /// Indicates free pages not accessible to the calling process and available to be allocated. 
+        /// Indicates free pages not accessible to the calling process and available to be allocated.
         /// For free pages, the information in the AllocationBase, AllocationProtect, Protect, and Type members is undefined.
         /// </summary>
         Free = 0x10000,
 
         /// <summary>
-        /// Indicates reserved pages where a range of the process's virtual address space is reserved without any physical storage being allocated. 
+        /// Indicates reserved pages where a range of the process's virtual address space is reserved without any physical storage being allocated.
         /// For reserved pages, the information in the Protect member is undefined.
         /// </summary>
         Reserve = 0x2000

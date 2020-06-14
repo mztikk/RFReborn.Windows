@@ -68,20 +68,20 @@ namespace RFReborn.Windows.Native
         /// Retrieves information about a range of pages within the virtual address space of a specified process.
         /// </summary>
         /// <param name="hProcess">
-        /// A handle to the process whose memory information is queried. 
-        /// The handle must have been opened with the PROCESS_QUERY_INFORMATION access right, which enables using the handle to read information from the process object. 
+        /// A handle to the process whose memory information is queried.
+        /// The handle must have been opened with the PROCESS_QUERY_INFORMATION access right, which enables using the handle to read information from the process object.
         /// For more information, see Process Security and Access Rights.
         /// </param>
         /// <param name="lpAddress">
-        /// A pointer to the base address of the region of pages to be queried. 
-        /// This value is rounded down to the next page boundary. 
-        /// To determine the size of a page on the host computer, use the GetSystemInfo function. 
+        /// A pointer to the base address of the region of pages to be queried.
+        /// This value is rounded down to the next page boundary.
+        /// To determine the size of a page on the host computer, use the GetSystemInfo function.
         /// If lpAddress specifies an address above the highest memory address accessible to the process, the function fails with ERROR_INVALID_PARAMETER.
         /// </param>
         /// <param name="lpBuffer">[Out] A pointer to a <see cref="MemoryBasicInformation"/> structure in which information about the specified page range is returned.</param>
         /// <param name="dwLength">The size of the buffer pointed to by the lpBuffer parameter, in bytes.</param>
         /// <returns>
-        /// The return value is the actual number of bytes returned in the information buffer. 
+        /// The return value is the actual number of bytes returned in the information buffer.
         /// If the function fails, the return value is zero. To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
         /// </returns>
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -93,25 +93,25 @@ namespace RFReborn.Windows.Native
         /// To specify the NUMA node for the physical memory, see VirtualAllocExNuma.
         /// </summary>
         /// <param name="hProcess">
-        /// The handle to a process. The function allocates memory within the virtual address space of this process. 
+        /// The handle to a process. The function allocates memory within the virtual address space of this process.
         /// The handle must have the PROCESS_VM_OPERATION access right. For more information, see Process Security and Access Rights.
         /// </param>
         /// <param name="lpAddress">
-        /// The pointer that specifies a desired starting address for the region of pages that you want to allocate. 
-        /// If you are reserving memory, the function rounds this address down to the nearest multiple of the allocation granularity. 
-        /// If you are committing memory that is already reserved, the function rounds this address down to the nearest page boundary. 
+        /// The pointer that specifies a desired starting address for the region of pages that you want to allocate.
+        /// If you are reserving memory, the function rounds this address down to the nearest multiple of the allocation granularity.
+        /// If you are committing memory that is already reserved, the function rounds this address down to the nearest page boundary.
         /// To determine the size of a page and the allocation granularity on the host computer, use the GetSystemInfo function.
         /// </param>
         /// <param name="dwSize">
-        /// The size of the region of memory to allocate, in bytes. 
-        /// If lpAddress is NULL, the function rounds dwSize up to the next page boundary. 
-        /// If lpAddress is not NULL, the function allocates all pages that contain one or more bytes in the range from lpAddress to lpAddress+dwSize. 
+        /// The size of the region of memory to allocate, in bytes.
+        /// If lpAddress is NULL, the function rounds dwSize up to the next page boundary.
+        /// If lpAddress is not NULL, the function allocates all pages that contain one or more bytes in the range from lpAddress to lpAddress+dwSize.
         /// This means, for example, that a 2-byte range that straddles a page boundary causes the function to allocate both pages.
         /// </param>
         /// <param name="flAllocationType">[Flags] The type of memory allocation.</param>
         /// <param name="flProtect">[Flags] The memory protection for the region of pages to be allocated.</param>
         /// <returns>
-        /// If the function succeeds, the return value is the base address of the allocated region of pages. 
+        /// If the function succeeds, the return value is the base address of the allocated region of pages.
         /// If the function fails, the return value is NULL. To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
         /// </returns>
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -120,25 +120,25 @@ namespace RFReborn.Windows.Native
         /// <summary>
         /// Releases, decommits, or releases and decommits a region of memory within the virtual address space of a specified process.
         /// </summary>
-        /// <param name="hProcess">A handle to a process. The function frees memory within the virtual address space of the process. 
+        /// <param name="hProcess">A handle to a process. The function frees memory within the virtual address space of the process.
         /// The handle must have the PROCESS_VM_OPERATION access right. For more information, see Process Security and Access Rights.
         /// </param>
         /// <param name="lpAddress">
-        /// A pointer to the starting address of the region of memory to be freed. 
+        /// A pointer to the starting address of the region of memory to be freed.
         /// If the dwFreeType parameter is MEM_RELEASE, lpAddress must be the base address returned by the <see cref="VirtualAllocEx"/> function when the region is reserved.
         /// </param>
         /// <param name="dwSize">
-        /// The size of the region of memory to free, in bytes. 
-        /// If the dwFreeType parameter is MEM_RELEASE, dwSize must be 0 (zero). 
-        /// The function frees the entire region that is reserved in the initial allocation call to <see cref="VirtualAllocEx"/>. 
-        /// If dwFreeType is MEM_DECOMMIT, the function decommits all memory pages that contain one or more bytes in the range from the lpAddress parameter to (lpAddress+dwSize). 
-        /// This means, for example, that a 2-byte region of memory that straddles a page boundary causes both pages to be decommitted. 
-        /// If lpAddress is the base address returned by VirtualAllocEx and dwSize is 0 (zero), the function decommits the entire region that is allocated by <see cref="VirtualAllocEx"/>. 
+        /// The size of the region of memory to free, in bytes.
+        /// If the dwFreeType parameter is MEM_RELEASE, dwSize must be 0 (zero).
+        /// The function frees the entire region that is reserved in the initial allocation call to <see cref="VirtualAllocEx"/>.
+        /// If dwFreeType is MEM_DECOMMIT, the function decommits all memory pages that contain one or more bytes in the range from the lpAddress parameter to (lpAddress+dwSize).
+        /// This means, for example, that a 2-byte region of memory that straddles a page boundary causes both pages to be decommitted.
+        /// If lpAddress is the base address returned by VirtualAllocEx and dwSize is 0 (zero), the function decommits the entire region that is allocated by <see cref="VirtualAllocEx"/>.
         /// After that, the entire region is in the reserved state.
         /// </param>
         /// <param name="dwFreeType">[Flags] The type of free operation.</param>
         /// <returns>
-        /// If the function succeeds, the return value is a nonzero value. 
+        /// If the function succeeds, the return value is a nonzero value.
         /// If the function fails, the return value is 0 (zero). To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
         /// </returns>
         [DllImport("kernel32.dll", SetLastError = true)]

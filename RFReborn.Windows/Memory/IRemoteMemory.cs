@@ -43,7 +43,6 @@ namespace RFReborn.Windows.Memory
         /// <param name="maxLength">Maximum length of the string(bytes to be read).</param>
         /// <param name="relative">If the address is relative or not.</param>
         /// <returns>String at the address.</returns>
-
         string ReadString(IntPtr address, Encoding encoding, int maxLength = 512, bool relative = false);
 
         /// <summary>
