@@ -97,9 +97,9 @@
         HANGEUL = 0x15,
 
 #pragma warning disable RCS1234 // Duplicate enum value.
-                               /// <summary>
-                               ///     IME Hangul mode
-                               /// </summary>
+        /// <summary>
+        ///     IME Hangul mode
+        /// </summary>
         HANGUL = 0x15,
 #pragma warning restore RCS1234 // Duplicate enum value.
 
@@ -121,9 +121,9 @@
         HANJA = 0x19,
 
 #pragma warning disable RCS1234 // Duplicate enum value.
-                               /// <summary>
-                               ///     IME Kanji mode
-                               /// </summary>
+        /// <summary>
+        ///     IME Kanji mode
+        /// </summary>
         KANJI = 0x19,
 #pragma warning restore RCS1234 // Duplicate enum value.
 

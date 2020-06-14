@@ -170,7 +170,7 @@ namespace RFReborn.Windows.Native
         /// </returns>
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern Handle OpenProcess([In] ProcessAccessFlags dwDesiredAccess,
-            [MarshalAs(UnmanagedType.Bool)] [In] bool bInheritHandle, [In] int dwProcessId);
+            [MarshalAs(UnmanagedType.Bool)][In] bool bInheritHandle, [In] int dwProcessId);
 
         /// <summary>
         ///     Reads data from an area of memory in a specified process. The entire area to be read must be accessible or the

@@ -23,10 +23,7 @@ namespace RFReborn.Windows.Native
         /// </summary>
         /// <param name="handle"></param>
         public Handle(IntPtr handle)
-            : base(true)
-        {
-            SetHandle(handle);
-        }
+            : base(true) => SetHandle(handle);
 
         #endregion
 

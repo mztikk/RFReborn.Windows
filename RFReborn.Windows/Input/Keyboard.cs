@@ -1,7 +1,7 @@
-﻿using RFReborn.Windows.Native;
-using RFReborn.Windows.Native.Enums;
-using System;
+﻿using System;
 using System.Threading;
+using RFReborn.Windows.Native;
+using RFReborn.Windows.Native.Enums;
 
 namespace RFReborn.Windows.Input
 {
