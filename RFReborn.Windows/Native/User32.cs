@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using RFReborn.Windows.Native.Enums;
+using RFReborn.Windows.Native.Structs;
 
 namespace RFReborn.Windows.Native
 {
@@ -304,5 +305,42 @@ namespace RFReborn.Windows.Native
         [DllImport("user32.dll", SetLastError = true)]
         public static extern void keybd_event([In] VirtualKeyCode bVk, [In] byte bScan, [In] KeyEventF dwFlags,
             [In] uint dwExtraInfo);
+
+        /// <summary>
+        ///     The set foreground window.
+        /// </summary>
+        /// <param name="hWnd">
+        ///     The h wnd.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="bool" />.
+        /// </returns>
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        /// <summary>
+        ///     Synthesizes keystrokes, mouse motions, and button clicks.
+        /// </summary>
+        /// <param name="nInputs">
+        ///     The number of structures in the pInputs array.
+        /// </param>
+        /// <param name="pInputs">
+        ///     An array of INPUT structures. Each structure represents an event to be inserted into the keyboard or mouse input
+        ///     stream.
+        /// </param>
+        /// <param name="cbSize">
+        ///     The size, in bytes, of an INPUT structure. If cbSize is not the size of an INPUT structure, the function fails.
+        /// </param>
+        /// <returns>
+        ///     The function returns the number of events that it successfully inserted into the keyboard or mouse input stream. If
+        ///     the function returns zero, the input was already blocked by another thread. To get extended error information, call
+        ///     GetLastError.
+        ///     This function fails when it is blocked by UIPI.Note that neither GetLastError nor the return value will indicate
+        ///     the failure was caused by UIPI blocking.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern uint SendInput([In] uint nInputs, [MarshalAs(UnmanagedType.LPArray)] [In]
+            INPUT[] pInputs, [In] int cbSize);
     }
 }

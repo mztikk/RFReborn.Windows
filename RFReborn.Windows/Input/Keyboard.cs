@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
+using RFReborn.Windows.Native.Structs;
 
 namespace RFReborn.Windows.Input
 {
@@ -244,5 +247,140 @@ namespace RFReborn.Windows.Input
             Thread.Sleep(delay);
             KeyboardEventUp(vKey);
         }
+
+        // Token: 0x06000041 RID: 65 RVA: 0x00003424 File Offset: 0x00001624
+        public static void SendInputKeyDown(VirtualKeyCode vkCode)
+        {
+            INPUT input = default;
+            input.Type = 1U;
+            input.Data.Keyboard = new KEYBDINPUT
+            {
+                KeyCode = (ushort)vkCode,
+                Scan = 0,
+                Flags = (IsExtendedKey(vkCode) ? 1U : 0U),
+                Time = 0U,
+                ExtraInfo = IntPtr.Zero
+            };
+            INPUT input2 = input;
+            SendInput(new INPUT[]
+            {
+                input2
+            });
+        }
+
+        // Token: 0x06000042 RID: 66 RVA: 0x000034A3 File Offset: 0x000016A3
+        public static void SendInputCtrlA() => SendInput(CommonInputs.CtrlA);
+
+        // Token: 0x06000043 RID: 67 RVA: 0x000034B0 File Offset: 0x000016B0
+        public static void SendInputKeyPress(VirtualKeyCode vkCode)
+        {
+            INPUT input = default;
+            input.Type = 1U;
+            KEYBDINPUT keyboard = new KEYBDINPUT
+            {
+                KeyCode = (ushort)vkCode,
+                Scan = 0,
+                Flags = (IsExtendedKey(vkCode) ? 1U : 0U),
+                Time = 0U,
+                ExtraInfo = IntPtr.Zero
+            };
+            input.Data.Keyboard = keyboard;
+            INPUT input2 = input;
+            input = default;
+            input.Type = 1U;
+            keyboard = new KEYBDINPUT
+            {
+                KeyCode = (ushort)vkCode,
+                Scan = 0,
+                Flags = (IsExtendedKey(vkCode) ? 3U : 2U),
+                Time = 0U,
+                ExtraInfo = IntPtr.Zero
+            };
+            input.Data.Keyboard = keyboard;
+            INPUT input3 = input;
+            SendInput(new INPUT[]
+            {
+                input2,
+                input3
+            });
+        }
+
+        // Token: 0x06000044 RID: 68 RVA: 0x00003598 File Offset: 0x00001798
+        public static void SendInputKeyUp(VirtualKeyCode vkCode)
+        {
+            INPUT input = default;
+            input.Type = 1U;
+            input.Data.Keyboard = new KEYBDINPUT
+            {
+                KeyCode = (ushort)vkCode,
+                Scan = 0,
+                Flags = (IsExtendedKey(vkCode) ? 3U : 2U),
+                Time = 0U,
+                ExtraInfo = IntPtr.Zero
+            };
+            INPUT input2 = input;
+            SendInput(new INPUT[]
+            {
+                input2
+            });
+        }
+
+        // Token: 0x06000045 RID: 69 RVA: 0x00003618 File Offset: 0x00001818
+        public static void SendInputString(string str)
+        {
+            List<INPUT> list = new List<INPUT>(str.Length * 2);
+            foreach (ushort num in str)
+            {
+                INPUT input = default;
+                input.Type = 1U;
+                input.Data.Keyboard = new KEYBDINPUT
+                {
+                    KeyCode = 0,
+                    Scan = num,
+                    Flags = 4U,
+                    Time = 0U,
+                    ExtraInfo = IntPtr.Zero
+                };
+                INPUT item = input;
+                input = default;
+                input.Type = 1U;
+                input.Data.Keyboard = new KEYBDINPUT
+                {
+                    KeyCode = 0,
+                    Scan = num,
+                    Flags = 6U,
+                    Time = 0U,
+                    ExtraInfo = IntPtr.Zero
+                };
+                INPUT item2 = input;
+                if ((num & 65280) == 57344)
+                {
+                    item.Data.Keyboard.Flags |= 1U;
+                    item2.Data.Keyboard.Flags |= 1U;
+                }
+                list.Add(item);
+                list.Add(item2);
+            }
+            SendInput(list.ToArray());
+        }
+
+        public static void SendInput(INPUT[] inputs)
+        {
+            if (inputs == null)
+            {
+                throw new ArgumentNullException(nameof(inputs));
+            }
+            if (inputs.Length == 0)
+            {
+                throw new ArgumentException("The input array was empty", nameof(inputs));
+            }
+            if (User32.SendInput((uint)inputs.Length, inputs, s_inputSize) != (ulong)inputs.Length)
+            {
+                throw new Exception("Some simulated input commands were not sent successfully. The most common reason for this happening are the security features of Windows including User Interface Privacy Isolation (UIPI). Your application can only send commands to applications of the same or lower elevation. Similarly certain commands are restricted to Accessibility/UIAutomation applications. Refer to the project home page and the code samples for more information.");
+            }
+        }
+
+        // Token: 0x04000009 RID: 9
+        private static readonly int s_inputSize = Marshal.SizeOf(typeof(INPUT));
     }
 }
