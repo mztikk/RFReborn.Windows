@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using RFReborn.AoB;
 using RFReborn.Windows.Memory;
 using RFReborn.Windows.Memory.Exceptions;
@@ -54,6 +55,18 @@ namespace RFReborn.Windows.Extensions
 
             return processModule.BaseAddress.ToInt64() + found;
         }
-        #endregion
+        #endregion AoB_Scanner
+
+        #region Pointer
+        /// <summary>
+        /// Walks a pointer(base + offsets) and reads + returns the final value.
+        /// </summary>
+        /// <param name="remoteMemory"><see cref="IRemoteMemory"/> used to read from the process.</param>
+        /// <param name="address">BaseAddress</param>
+        /// <param name="offsets">Offsets to walk</param>
+        /// <param name="relative">If the address is relative or not.</param>
+        /// <returns>The final value of the pointer.</returns>
+        public static T ReadPointer<T>(this IRemoteMemory remoteMemory, IntPtr address, int[] offsets, bool relative = false) where T : unmanaged => remoteMemory.Read<T>(remoteMemory.GetAddress(address, offsets, relative));
+        #endregion Pointer
     }
 }

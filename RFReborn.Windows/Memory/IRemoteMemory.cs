@@ -13,8 +13,9 @@ namespace RFReborn.Windows.Memory
         /// </summary>
         /// <param name="address">BaseAddress</param>
         /// <param name="offsets">Offsets to walk</param>
+        /// <param name="relative">If the address is relative or not.</param>
         /// <returns>The final address of the pointer.</returns>
-        IntPtr GetAddress(IntPtr address, int[] offsets);
+        IntPtr GetAddress(IntPtr address, int[] offsets, bool relative = false);
 
         /// <summary>
         /// Reads a valu of type <typeparamref name="T"/> from the remote process at a specified address.
