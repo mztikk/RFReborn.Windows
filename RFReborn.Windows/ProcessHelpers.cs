@@ -147,7 +147,7 @@ namespace RFReborn.Windows
                 }
             }
 
-            return null;
+            throw new ProcessNotFoundException(processName);
         }
     }
 }
