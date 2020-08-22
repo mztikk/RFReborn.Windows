@@ -124,5 +124,30 @@ namespace RFReborn.Windows
 
             return procs[index];
         }
+
+        /// <summary>
+        /// Gets a <see cref="Process"/> by name and optional index
+        /// </summary>
+        /// <param name="processName">Process name to get the <see cref="Process"/>es for.</param>
+        /// <param name="processSelector"><see cref="Func{T, TResult}"/> will be called on every <see cref="Process"/> and returns the <see cref="Process"/> on which this <see cref="Func{T, TResult}"/> returns <see langword="true"/> for</param>
+        /// <exception cref="ProcessNotFoundException">Thrown if no process with the specified <paramref name="processName"/> is found</exception>
+        public static Process GetProcessByName(string processName, Func<Process, bool> processSelector)
+        {
+            Process[] procs = Process.GetProcessesByName(processName);
+            if (procs.Length == 0)
+            {
+                throw new ProcessNotFoundException(processName);
+            }
+
+            foreach (Process proc in procs)
+            {
+                if (processSelector(proc))
+                {
+                    return proc;
+                }
+            }
+
+            return null;
+        }
     }
 }
