@@ -43,7 +43,7 @@ namespace RFReborn.Windows.Memory
         public ProcessModule MainModule => NativeProcess.MainModule;
 
         /// <summary>
-        /// Initializes a new instance of <see cref="RemoteMemory"/>.
+        /// Initializes a new instance of <see cref="RemoteMemory"/> for a specified <see cref="Process"/>.
         /// </summary>
         /// <param name="proc"><see cref="Process"/> to open.</param>
         public RemoteMemory(Process proc)
@@ -58,6 +58,19 @@ namespace RFReborn.Windows.Memory
             Is64 = ProcessHelpers.Is64Bit(NativeProcess);
             Both64 = Is64 && Self64;
         }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="RemoteMemory"/> for a specific Process ID.
+        /// </summary>
+        /// <param name="processID">Process ID to open the <see cref="Process"/> from.</param>
+        public RemoteMemory(int processID) : this(Process.GetProcessById(processID)) { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="RemoteMemory"/> for a specific Process ID.
+        /// </summary>
+        /// <param name="processName">Process name to get the <see cref="Process"/>es for.</param>
+        /// <param name="index">Index to use if there are multpiple <see cref="Process"/>es of the same name, default 0 to use first one.</param>
+        public RemoteMemory(string processName, int index = 0) : this(Process.GetProcessesByName(processName)[index]) { }
 
         /// <inheritdoc />
         public T Read<T>(IntPtr address, bool relative = false) where T : unmanaged
