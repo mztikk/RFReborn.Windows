@@ -107,5 +107,22 @@ namespace RFReborn.Windows
 
             return true;
         }
+
+        /// <summary>
+        /// Gets a <see cref="Process"/> by name and optional index
+        /// </summary>
+        /// <param name="processName">Process name to get the <see cref="Process"/>es for.</param>
+        /// <param name="index">Index to use if there are multpiple <see cref="Process"/>es of the same name, default 0 to use first one.</param>
+        /// <exception cref="ProcessNotFoundException">Thrown if no process with the specified <paramref name="processName"/> is found</exception>
+        public static Process GetProcessByName(string processName, int index = 0)
+        {
+            Process[] procs = Process.GetProcessesByName(processName);
+            if (procs.Length == 0)
+            {
+                throw new ProcessNotFoundException(processName);
+            }
+
+            return procs[index];
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace RFReborn.Windows.Memory
         /// </summary>
         /// <param name="processName">Process name to get the <see cref="Process"/>es for.</param>
         /// <param name="index">Index to use if there are multpiple <see cref="Process"/>es of the same name, default 0 to use first one.</param>
-        public RemoteMemory(string processName, int index = 0) : this(Process.GetProcessesByName(processName)[index]) { }
+        public RemoteMemory(string processName, int index = 0) : this(ProcessHelpers.GetProcessByName(processName, index)) { }
 
         /// <inheritdoc />
         public T Read<T>(IntPtr address, bool relative = false) where T : unmanaged
