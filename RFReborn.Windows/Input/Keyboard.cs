@@ -276,7 +276,7 @@ namespace RFReborn.Windows.Input
         {
             INPUT input = default;
             input.Type = 1U;
-            KEYBDINPUT keyboard = new KEYBDINPUT
+            var keyboard = new KEYBDINPUT
             {
                 KeyCode = (ushort)vkCode,
                 Scan = 0,
@@ -328,7 +328,7 @@ namespace RFReborn.Windows.Input
         // Token: 0x06000045 RID: 69 RVA: 0x00003618 File Offset: 0x00001818
         public static void SendInputString(string str)
         {
-            List<INPUT> list = new List<INPUT>(str.Length * 2);
+            var list = new List<INPUT>(str.Length * 2);
             foreach (ushort num in str)
             {
                 INPUT input = default;
@@ -366,7 +366,7 @@ namespace RFReborn.Windows.Input
 
         public static void SendInput(INPUT[] inputs)
         {
-            if (inputs == null)
+            if (inputs is null)
             {
                 throw new ArgumentNullException(nameof(inputs));
             }

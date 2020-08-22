@@ -83,14 +83,14 @@ namespace RFReborn.Windows
         /// <returns><see langword="true"/> if process exists, otherwise <see langword="false"/>.</returns>
         public static bool ProcessExists(Process process)
         {
-            if (process == null)
+            if (process is null)
             {
                 throw new ArgumentNullException(nameof(process));
             }
 
             try
             {
-                Process proc = Process.GetProcessById(process.Id);
+                Process? proc = Process.GetProcessById(process.Id);
                 if (proc?.HasExited != false)
                 {
                     return false;

@@ -6,6 +6,7 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
     
     <Version>1.5.3</Version>
     <AssemblyVersion>1.5.3</AssemblyVersion>
@@ -26,6 +27,10 @@
   <ItemGroup>
     <PackageReference Include="RFReborn" Version="1.5.3" />
     <PackageReference Include="System.Management" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 
 </Project>
