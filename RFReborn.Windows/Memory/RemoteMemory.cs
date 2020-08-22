@@ -66,7 +66,7 @@ namespace RFReborn.Windows.Memory
         public RemoteMemory(int processID) : this(Process.GetProcessById(processID)) { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="RemoteMemory"/> for a specific Process ID.
+        /// Initializes a new instance of <see cref="RemoteMemory"/> with a process name.
         /// </summary>
         /// <param name="processName">Process name to get the <see cref="Process"/>es for.</param>
         /// <param name="index">Index to use if there are multpiple <see cref="Process"/>es of the same name, default 0 to use first one.</param>
