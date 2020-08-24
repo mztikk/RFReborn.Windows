@@ -16,9 +16,9 @@ namespace RFReborn.Windows.Tests.RemoteMemoryTests
             using (var memory = new RemoteMemory(GetProcess()))
             {
                 CollectionAssert.AreEqual(bytes, preBytes);
-                fixed (byte* bp = bytes)
+                fixed (byte* bytePointer = bytes)
                 {
-                    memory.WriteBytes(new System.IntPtr(bp), newBytes);
+                    memory.WriteBytes(new System.IntPtr(bytePointer), newBytes);
                 }
                 CollectionAssert.AreNotEqual(preBytes, bytes);
                 CollectionAssert.AreEqual(newBytes, bytes);
