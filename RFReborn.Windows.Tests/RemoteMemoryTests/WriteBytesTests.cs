@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RFReborn.Windows.Memory;
 
 namespace RFReborn.Windows.Tests.RemoteMemoryTests
@@ -18,7 +19,7 @@ namespace RFReborn.Windows.Tests.RemoteMemoryTests
                 CollectionAssert.AreEqual(bytes, preBytes);
                 fixed (byte* bytePointer = bytes)
                 {
-                    memory.WriteBytes(new System.IntPtr(bytePointer), newBytes);
+                    memory.WriteBytes(new IntPtr(bytePointer), newBytes);
                 }
                 CollectionAssert.AreNotEqual(preBytes, bytes);
                 CollectionAssert.AreEqual(newBytes, bytes);
