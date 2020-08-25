@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
 
@@ -51,6 +52,24 @@ namespace RFReborn.Windows.Extensions
             }
 
             throw new DllNotFoundException($"Module \"{moduleName}\" not found.");
+        }
+
+        /// <summary>
+        /// Searches the <see cref="ProcessModuleCollection"/> for all <see cref="ProcessModule"/>s that the <paramref name="moduleSelector"/> returns <see langword="true"/> for.
+        /// </summary>
+        /// <param name="proc"><see cref="Process"/> which modules to search</param>
+        /// <param name="moduleSelector">A function to test each <see cref="ProcessModule"/> for a condition.</param>
+        /// <returns><see cref="ProcessModule"/></returns>
+        public static IEnumerable<ProcessModule> GetModule(this Process proc, Func<ProcessModule, bool> moduleSelector)
+        {
+            for (int i = 0; i < proc.Modules.Count; i++)
+            {
+                ProcessModule module = proc.Modules[i];
+                if (moduleSelector(module))
+                {
+                    yield return module;
+                }
+            }
         }
     }
 }
