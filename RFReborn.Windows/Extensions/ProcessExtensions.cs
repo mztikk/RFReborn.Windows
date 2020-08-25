@@ -60,7 +60,7 @@ namespace RFReborn.Windows.Extensions
         /// <param name="proc"><see cref="Process"/> which modules to search</param>
         /// <param name="moduleSelector">A function to test each <see cref="ProcessModule"/> for a condition.</param>
         /// <returns><see cref="ProcessModule"/></returns>
-        public static IEnumerable<ProcessModule> GetModule(this Process proc, Func<ProcessModule, bool> moduleSelector)
+        public static IEnumerable<ProcessModule> GetModules(this Process proc, Func<ProcessModule, bool> moduleSelector)
         {
             for (int i = 0; i < proc.Modules.Count; i++)
             {
