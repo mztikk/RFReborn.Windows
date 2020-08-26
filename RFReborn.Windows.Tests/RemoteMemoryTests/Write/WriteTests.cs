@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RFReborn.Windows.Memory;
 
-namespace RFReborn.Windows.Tests.RemoteMemoryTests
+namespace RFReborn.Windows.Tests.RemoteMemoryTests.Write
 {
     [TestClass]
     public unsafe class WriteTests : RemoteMemoryBaseTest
