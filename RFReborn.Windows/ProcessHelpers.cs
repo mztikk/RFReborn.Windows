@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using RFReborn.AoB;
+using RFReborn.Windows.Extensions;
+using RFReborn.Windows.Memory;
+using RFReborn.Windows.Memory.Exceptions;
 using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
 
@@ -40,7 +45,7 @@ namespace RFReborn.Windows
                 return handle;
             }
 
-            throw new Exception($"Couldn't open process: {procId}");
+            throw new OpenProcessException(procId);
         }
 
         /// <summary>
@@ -149,5 +154,42 @@ namespace RFReborn.Windows
 
             throw new ProcessNotFoundException(processName);
         }
+
+        /// <summary>
+        /// Enumerates all <see cref="Process"/>es that match a given predicate
+        /// </summary>
+        /// <param name="processSelector">Predicate used to select <see cref="Process"/>es</param>
+        public static IEnumerable<Process> GetProcesses(Func<IRemoteMemory, bool> processSelector)
+        {
+            foreach (Process proc in Process.GetProcesses())
+            {
+                if (!ProcessExists(proc))
+                {
+                    continue;
+                }
+
+                bool yield = false;
+                try
+                {
+                    using var remoteMemory = new RemoteMemory(proc);
+                    yield = processSelector(remoteMemory);
+                }
+                catch (OpenProcessException)
+                {
+                    continue;
+                }
+
+                if (yield)
+                {
+                    yield return proc;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Enumerates all <see cref="Process"/>es that match a given <see cref="Signature"/>
+        /// </summary>
+        /// <param name="signature"><see cref="Signature"/> to check the <see cref="Process"/>es for</param>
+        public static IEnumerable<Process> GetProcessesBySignature(Signature signature) => GetProcesses(remoteMemory => remoteMemory.FindSignature(signature) != -1);
     }
 }
