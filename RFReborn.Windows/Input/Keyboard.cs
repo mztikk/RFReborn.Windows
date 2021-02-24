@@ -256,7 +256,7 @@ namespace RFReborn.Windows.Input
             input.Data.Keyboard = new KEYBDINPUT
             {
                 KeyCode = (ushort)vkCode,
-                Scan = 0,
+                Scan = (ushort)User32.MapVirtualKey((uint)vkCode, 0),
                 Flags = (IsExtendedKey(vkCode) ? 1U : 0U),
                 Time = 0U,
                 ExtraInfo = IntPtr.Zero
@@ -279,7 +279,7 @@ namespace RFReborn.Windows.Input
             var keyboard = new KEYBDINPUT
             {
                 KeyCode = (ushort)vkCode,
-                Scan = 0,
+                Scan = (ushort)User32.MapVirtualKey((uint)vkCode, 0),
                 Flags = (IsExtendedKey(vkCode) ? 1U : 0U),
                 Time = 0U,
                 ExtraInfo = IntPtr.Zero
@@ -291,7 +291,7 @@ namespace RFReborn.Windows.Input
             keyboard = new KEYBDINPUT
             {
                 KeyCode = (ushort)vkCode,
-                Scan = 0,
+                Scan = (ushort)User32.MapVirtualKey((uint)vkCode, 0),
                 Flags = (IsExtendedKey(vkCode) ? 3U : 2U),
                 Time = 0U,
                 ExtraInfo = IntPtr.Zero
@@ -305,6 +305,13 @@ namespace RFReborn.Windows.Input
             });
         }
 
+        public static void SendInputKeyPress(VirtualKeyCode vkCode, int delay)
+        {
+            SendInputKeyDown(vkCode);
+            Thread.Sleep(delay);
+            SendInputKeyUp(vkCode);
+        }
+
         // Token: 0x06000044 RID: 68 RVA: 0x00003598 File Offset: 0x00001798
         public static void SendInputKeyUp(VirtualKeyCode vkCode)
         {
@@ -313,7 +320,7 @@ namespace RFReborn.Windows.Input
             input.Data.Keyboard = new KEYBDINPUT
             {
                 KeyCode = (ushort)vkCode,
-                Scan = 0,
+                Scan = (ushort)User32.MapVirtualKey((uint)vkCode, 0),
                 Flags = (IsExtendedKey(vkCode) ? 3U : 2U),
                 Time = 0U,
                 ExtraInfo = IntPtr.Zero
