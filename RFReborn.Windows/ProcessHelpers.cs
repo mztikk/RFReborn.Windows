@@ -168,6 +168,15 @@ namespace RFReborn.Windows
                     continue;
                 }
 
+                try
+                {
+                    ProcessModule throwTest = proc.MainModule;
+                }
+                catch (Win32Exception)
+                {
+                    continue;
+                }
+
                 bool yield = false;
                 try
                 {
