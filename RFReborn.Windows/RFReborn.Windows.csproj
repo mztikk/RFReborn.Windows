@@ -2,20 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <!--<TargetFramework>net5.0-windows</TargetFramework>-->
     <LangVersion>latest</LangVersion>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
     
-    <Version>1.5.4.1</Version>
-    <AssemblyVersion>1.5.4.1</AssemblyVersion>
+    <Version>1.5.4.2</Version>
+    <AssemblyVersion>1.5.4.2</AssemblyVersion>
     
     <PackageProjectUrl>https://github.com/mztikk/RFReborn.Windows</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mztikk/RFReborn.Windows</RepositoryUrl>
     <Authors>mztikk</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RFReborn" Version="1.5.5" />
+    <PackageReference Include="RFReborn" Version="1.5.*" />
     <PackageReference Include="System.Management" Version="5.0.0" />
   </ItemGroup>
 
