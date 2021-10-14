@@ -9,14 +9,17 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
     
-    <Version>1.5.4.2</Version>
-    <AssemblyVersion>1.5.4.2</AssemblyVersion>
+    <Version>1.5.5.0</Version>
+    <AssemblyVersion>1.5.5.0</AssemblyVersion>
     
     <PackageProjectUrl>https://github.com/mztikk/RFReborn.Windows</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mztikk/RFReborn.Windows</RepositoryUrl>
     <Authors>mztikk</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
