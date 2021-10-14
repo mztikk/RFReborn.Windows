@@ -20,7 +20,7 @@ namespace RFReborn.Windows.Tests.RemoteMemoryTests.Write
                 fixed (char* charPointer = s1)
                 {
                     memory.WriteString(new IntPtr(charPointer), s2, GetEncoding());
-                    string written = new string(charPointer);
+                    string written = new(charPointer);
                     Assert.AreNotEqual(s1, written);
                     Assert.AreEqual(s2, written);
                 }

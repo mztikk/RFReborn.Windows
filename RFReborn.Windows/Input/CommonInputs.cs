@@ -9,7 +9,7 @@ namespace RFReborn.Windows.Input
         static CommonInputs()
         {
             INPUT[] array = new INPUT[4];
-            int num = 0;
+            const int num = 0;
             INPUT input = default;
             input.Type = 1U;
             input.Data.Keyboard = new KEYBDINPUT
@@ -21,7 +21,7 @@ namespace RFReborn.Windows.Input
                 ExtraInfo = IntPtr.Zero
             };
             array[num] = input;
-            int num2 = 1;
+            const int num2 = 1;
             input = default;
             input.Type = 1U;
             input.Data.Keyboard = new KEYBDINPUT
@@ -33,7 +33,7 @@ namespace RFReborn.Windows.Input
                 ExtraInfo = IntPtr.Zero
             };
             array[num2] = input;
-            int num3 = 2;
+            const int num3 = 2;
             input = default;
             input.Type = 1U;
             input.Data.Keyboard = new KEYBDINPUT
@@ -45,7 +45,7 @@ namespace RFReborn.Windows.Input
                 ExtraInfo = IntPtr.Zero
             };
             array[num3] = input;
-            int num4 = 3;
+            const int num4 = 3;
             input = default;
             input.Type = 1U;
             input.Data.Keyboard = new KEYBDINPUT
@@ -59,7 +59,7 @@ namespace RFReborn.Windows.Input
             array[num4] = input;
             CtrlA = array;
             INPUT[] array2 = new INPUT[1];
-            int num5 = 0;
+            const int num5 = 0;
             input = default;
             input.Type = 1U;
             input.Data.Keyboard = new KEYBDINPUT
