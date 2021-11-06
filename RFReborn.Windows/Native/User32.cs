@@ -320,6 +320,26 @@ namespace RFReborn.Windows.Native
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
+        /// Retrieves a handle to the foreground window (the window with which the user is currently working). The system assigns a slightly higher priority to the thread that creates the foreground window than it does to other threads.
+        /// </summary>
+        /// <returns>The return value is a handle to the foreground window. The foreground window can be NULL in certain circumstances, such as when a window is losing activation.</returns>
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        /// <summary>
+        /// Retrieves the dimensions of the bounding rectangle of the specified window. The dimensions are given in screen coordinates that are relative to the upper-left corner of the screen.
+        /// </summary>
+        /// <param name="hWnd">A handle to the window.</param>
+        /// <param name="rect">A pointer to a RECT structure that receives the screen coordinates of the upper-left and lower-right corners of the window.</param>
+        /// <returns>
+        /// If the function succeeds, the return value is nonzero.
+        /// If the function fails, the return value is zero.To get extended error information, call GetLastError.
+        /// </returns>
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetWindowRect([In] IntPtr hWnd, [Out] out RECT rect);
+
+        /// <summary>
         ///     Synthesizes keystrokes, mouse motions, and button clicks.
         /// </summary>
         /// <param name="nInputs">
