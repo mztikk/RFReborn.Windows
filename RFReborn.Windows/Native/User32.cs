@@ -252,6 +252,10 @@ namespace RFReborn.Windows.Native
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetCursorPos([In] int x, [In] int y);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetCursorPos([Out] out POINT point);
+
         /// <summary>
         ///     Sets the position of the cursor in physical coordinates.
         /// </summary>

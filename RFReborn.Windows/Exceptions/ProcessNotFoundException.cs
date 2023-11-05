@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace RFReborn.Windows
+namespace RFReborn.Windows.Exceptions
 {
     [Serializable]
     public class ProcessNotFoundException : Exception

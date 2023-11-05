@@ -2,6 +2,7 @@
 using System.Threading;
 using RFReborn.Windows.Native;
 using RFReborn.Windows.Native.Enums;
+using RFReborn.Windows.Native.Structs;
 
 namespace RFReborn.Windows.Input
 {
@@ -263,6 +264,8 @@ namespace RFReborn.Windows.Input
         /// </summary>
         public static void MouseEventRUp(int x, int y) => User32.mouse_event(MouseEventF.RIGHTUP, x, y, 0, 0);
 
+        public static void MouseEventMove(int x, int y) => User32.mouse_event(MouseEventF.MOVE, x, y, 0, 0);
+
         /// <summary>
         ///     Moves the cursor to the specified screen coordinates. If the new coordinates are not within the screen rectangle
         ///     set by the most recent ClipCursor function call, the system automatically adjusts the coordinates so that the
@@ -292,5 +295,7 @@ namespace RFReborn.Windows.Input
         ///     TRUE if successful; otherwise FALSE.
         /// </returns>
         public static bool SetPhysicalCursorPos(int x, int y) => User32.SetPhysicalCursorPos(x, y);
+
+        public static bool GetCursorPos(out POINT point) => User32.GetCursorPos(out point);
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using RFReborn.AoB;
+using RFReborn.Windows.Exceptions;
 using RFReborn.Windows.Extensions;
 using RFReborn.Windows.Memory;
 using RFReborn.Windows.Memory.Exceptions;

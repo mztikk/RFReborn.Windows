@@ -11,11 +11,11 @@ namespace RFReborn.Windows.Native.Structs
         /// <summary>
         /// The x-coordinate of the point.
         /// </summary>
-        public long x;
+        public int x;
 
         /// <summary>
         /// The y-coordinate of the point.
         /// </summary>
-        public long y;
+        public int y;
     }
 }
